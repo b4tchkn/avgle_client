@@ -80,6 +80,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "pedantic_mono",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/pedantic_mono-1.10.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/batch/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -140,7 +146,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-08-21T14:34:12.810817Z",
+  "generated": "2020-08-21T14:51:07.053134Z",
   "generator": "pub",
   "generatorVersion": "2.9.0"
 }
