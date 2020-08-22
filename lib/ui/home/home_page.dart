@@ -8,9 +8,13 @@ class HomePage extends HookWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
+    debugPrint('home');
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+      ),
+      body: Center(
+        child: Text('This is HomePage.'),
       ),
     );
   }

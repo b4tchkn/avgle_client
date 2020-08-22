@@ -1,7 +1,9 @@
 import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/explore/explore_page.dart';
 import 'package:avgleclient/ui/home/home_page.dart';
+import 'package:avgleclient/ui/library/library_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -10,8 +12,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class App extends HookWidget {
   final List<Widget> _pages = [
     HomePage(Strings.bottomNavItemHomeTitle),
-    HomePage(Strings.bottomNavItemExploreTitle),
-    HomePage(Strings.bottomNavItemLibraryTitle),
+    ExplorePage(Strings.bottomNavItemExploreTitle),
+    LibraryPage(Strings.bottomNavItemLibraryTitle),
   ];
   final bottomNavItems = [
     const BottomNavigationBarItem(

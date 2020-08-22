@@ -8,8 +8,8 @@ class ExplorePage extends HookWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
+    debugPrint('Explore');
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(title),
       ),
