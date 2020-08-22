@@ -1,32 +1,25 @@
-import 'package:avgleclient/home_page.dart';
+import 'package:avgleclient/app_notifier.dart';
+import 'package:avgleclient/res/app_colors.dart';
+import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/home/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final appNotifierProvider =
-    ChangeNotifierProvider((ref) => AppNotifierProvider(ref));
-
-class AppNotifierProvider extends ChangeNotifier {
-  AppNotifierProvider(ProviderReference ref);
-  int currentIndex = 0;
-
-  void onTapped(int index) {
-    currentIndex = index;
-    notifyListeners();
-  }
-}
-
 class App extends HookWidget {
   final List<Widget> _pages = [
-    HomePage('ホーム'),
-    HomePage('ほーむ'),
-    HomePage('Home'),
+    HomePage(Strings.bottomNavItemHomeTitle),
+    HomePage(Strings.bottomNavItemExploreTitle),
+    HomePage(Strings.bottomNavItemLibraryTitle),
   ];
   final bottomNavItems = [
-    const BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('ホーム')),
-    const BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('ホーム')),
-    const BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('ホーム')),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemHomeTitle)),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemExploreTitle)),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemLibraryTitle)),
   ];
 
   @override
@@ -34,11 +27,16 @@ class App extends HookWidget {
     final appNotifier = useProvider(appNotifierProvider);
     return MaterialApp(
       title: 'Avgle',
+      theme: ThemeData(
+        primaryColor: AppColors.grey,
+        scaffoldBackgroundColor: AppColors.darkGrey,
+      ),
+      darkTheme: ThemeData.dark(),
       home: Scaffold(
         body: _pages[appNotifier.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.black,
-          unselectedItemColor: Colors.grey,
+          fixedColor: Colors.white,
+          unselectedItemColor: AppColors.lightGrey,
           onTap: (index) => appNotifier.onTapped(index),
           currentIndex: appNotifier.currentIndex,
           type: BottomNavigationBarType.shifting,
