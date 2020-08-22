@@ -5,11 +5,15 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
+  flutter: '>=1.20.0'
 
 dependencies:
   flutter:
     sdk: flutter
+
+  # For Analyzer
+  pedantic: ^1.9.0
 
   cupertino_icons: ^0.1.3
 
@@ -17,10 +21,20 @@ dependencies:
   flutter_hooks: ^0.12.0
   hooks_riverpod: ^0.6.1
 
+  # For Networking
+  dio: ^3.0.9
+  dio_http_cache: ^0.2.8
+  retrofit: ^1.3.4
+  logger: any
+
+  # For Model
+  json_serializable: ^3.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic_mono: any
+  build_runner: ^1.7.4
+  retrofit_generator: ^1.3.7
 
 flutter:
   uses-material-design: true

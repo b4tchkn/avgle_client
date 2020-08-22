@@ -11,6 +11,5 @@ class AppNotifierProvider extends ChangeNotifier {
   void onTapped(int index) {
     currentIndex = index;
     notifyListeners();
-    debugPrint(currentIndex.toString());
   }
 }

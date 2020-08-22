@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class App extends HookWidget {
   final List<Widget> _pages = [
-    HomePage(Strings.bottomNavItemHomeTitle),
+    HomePage(),
     ExplorePage(Strings.bottomNavItemExploreTitle),
     LibraryPage(Strings.bottomNavItemLibraryTitle),
   ];
