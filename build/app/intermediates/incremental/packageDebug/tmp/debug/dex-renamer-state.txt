@@ -1,4 +1,0 @@
-#Sun Aug 23 00:01:11 JST 2020
-base.0=/Users/batch/FlutterProjects/avgle_client/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

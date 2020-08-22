@@ -8,6 +8,6 @@ part 'video_data_source.g.dart';
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class VideoDataSource {
   factory VideoDataSource(Dio dio, {String baseUrl}) = _VideoDataSource;
-  @GET("/videos/{page}")
-  Future<VideoRes> getVideos(@Path("page") String page);
+  @GET('/videos/{page}')
+  Future<VideoRes> getVideos(@Path('page') String page);
 }
