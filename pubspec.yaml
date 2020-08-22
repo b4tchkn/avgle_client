@@ -10,12 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^0.1.3
-  pedantic_mono: ^1.10.0+2
+
+  # For Architecture
+  flutter_hooks: ^0.12.0
+  hooks_riverpod: ^0.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic_mono: any
 
 flutter:
   uses-material-design: true

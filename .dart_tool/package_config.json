@@ -56,10 +56,40 @@
       "languageVersion": "2.9"
     },
     {
+      "name": "flutter_hooks",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/flutter_hooks-0.12.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "flutter_riverpod",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/flutter_riverpod-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/batch/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "2.2"
+    },
+    {
+      "name": "freezed_annotation",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/freezed_annotation-0.11.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "hooks_riverpod",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/hooks_riverpod-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/json_annotation-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
     },
     {
       "name": "matcher",
@@ -86,6 +116,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "riverpod",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/riverpod-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/batch/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -102,6 +138,12 @@
       "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.9.5",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "state_notifier",
+      "rootUri": "file:///Users/batch/.pub-cache/hosted/pub.dartlang.org/state_notifier-0.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "stream_channel",
@@ -146,7 +188,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-08-21T14:51:07.053134Z",
+  "generated": "2020-08-22T06:13:10.809738Z",
   "generator": "pub",
   "generatorVersion": "2.9.0"
 }
