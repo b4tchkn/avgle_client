@@ -29,7 +29,7 @@ class App extends HookWidget {
       title: 'Avgle',
       theme: ThemeData(
         primaryColor: AppColors.grey,
-        scaffoldBackgroundColor: AppColors.darkGrey,
+//        scaffoldBackgroundColor: AppColors.darkGrey,
       ),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
