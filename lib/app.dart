@@ -19,9 +19,11 @@ class App extends HookWidget {
     const BottomNavigationBarItem(
         icon: Icon(Icons.home), title: Text(Strings.bottomNavItemHomeTitle)),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemExploreTitle)),
+        icon: Icon(Icons.explore),
+        title: Text(Strings.bottomNavItemExploreTitle)),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemLibraryTitle)),
+        icon: Icon(Icons.video_library),
+        title: Text(Strings.bottomNavItemLibraryTitle)),
   ];
 
   @override
@@ -31,7 +33,6 @@ class App extends HookWidget {
       title: 'Avgle',
       theme: ThemeData(
         primaryColor: AppColors.grey,
-//        scaffoldBackgroundColor: AppColors.darkGrey,
       ),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
@@ -41,7 +42,7 @@ class App extends HookWidget {
           unselectedItemColor: AppColors.lightGrey,
           onTap: (index) => appNotifier.onTapped(index),
           currentIndex: appNotifier.currentIndex,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           items: bottomNavItems,
         ),
       ),
