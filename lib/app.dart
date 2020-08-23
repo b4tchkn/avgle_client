@@ -8,12 +8,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class App extends HookWidget {
   final List<Widget> _pages = [
     HomePage(),
-    ExplorePage(Strings.bottomNavItemExploreTitle),
-    LibraryPage(Strings.bottomNavItemLibraryTitle),
+    ExplorePage(),
+    LibraryPage(),
   ];
   final bottomNavItems = [
     const BottomNavigationBarItem(
@@ -36,6 +37,37 @@ class App extends HookWidget {
       ),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
+        appBar: AppBar(
+          title: Image.asset(
+            'images/logo.png',
+            height: 40,
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {},
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Material(
+                elevation: 4.0,
+                shape: const CircleBorder(),
+                clipBehavior: Clip.hardEdge,
+                color: Colors.transparent,
+                child: Ink.image(
+                  image: const NetworkImage(
+                      'https://avgle.com/media/users/nopic-Male.gif'),
+                  fit: BoxFit.cover,
+                  width: 40.0,
+                  height: 40.0,
+                  child: InkWell(
+                    onTap: () {},
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
         body: _pages[appNotifier.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           fixedColor: Colors.white,

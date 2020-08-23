@@ -17,9 +17,6 @@ class HomePage extends HookWidget {
     if (!error.hasBeenHandled) {}
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ホーム'),
-      ),
       body: Center(
         child: snapshot.hasData
             ? Text(snapshot.data.response.videos[3].title)
