@@ -1,3 +1,4 @@
+import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,12 +14,13 @@ class HomePage extends HookWidget {
     final getVideos =
         useMemoized(() => viewModel.getVideos(), [error.peekContent()?.type]);
     useFuture(getVideos);
+    final appNotifier = useProvider(appNotifierProvider);
+    final scrollController = appNotifier.homeListScrollController;
     if (!error.hasBeenHandled) {}
 
-    final _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      if (_scrollController.position.maxScrollExtent ==
-          _scrollController.position.pixels) {
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.position.pixels) {
         viewModel.getVideos();
       }
     });
@@ -28,7 +30,7 @@ class HomePage extends HookWidget {
             ? RefreshIndicator(
                 onRefresh: () => viewModel.refreshAndGetVideos(),
                 child: ListView.builder(
-                    controller: _scrollController,
+                    controller: scrollController,
                     itemCount: viewModel.videos.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
