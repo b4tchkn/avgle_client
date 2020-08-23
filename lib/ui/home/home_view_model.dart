@@ -15,17 +15,25 @@ class HomeViewModel extends ChangeNotifier {
 
   VideoRes _videoRes;
   VideoRes get videoRes => _videoRes;
-  bool isLoading = false;
-  List<Video> _videos;
+
+  final List<Video> _videos = [];
   List<Video> get videos => _videos;
 
-  Future<VideoRes> getVideos(String page) async {
-    isLoading = true;
-    notifyListeners();
-    return _repository.getVideos(page).then((value) {
-      isLoading = false;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  int _pageCount = -1;
+
+  Future<VideoRes> getVideos() async {
+    _pageCount++;
+    _isLoading = true;
+    return _repository.getVideos(_pageCount.toString()).then((value) {
       _videoRes = value;
-      return _videoRes = value;
-    }).catchError((dynamic error) {});
+      _videos.addAll(value.response.videos);
+      _isLoading = false;
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('Avgle: getVideoError $error');
+    });
   }
 }

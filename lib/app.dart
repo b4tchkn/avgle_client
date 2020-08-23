@@ -55,7 +55,8 @@ class App extends HookWidget {
                 color: Colors.transparent,
                 child: Ink.image(
                   image: const NetworkImage(
-                      'https://avgle.com/media/users/nopic-Male.gif'),
+                    'https://avgle.com/media/users/nopic-Male.gif',
+                  ),
                   fit: BoxFit.cover,
                   width: 40.0,
                   height: 40.0,
