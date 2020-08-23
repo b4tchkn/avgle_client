@@ -28,6 +28,7 @@ dependencies:
   logger: any
 
   # For UIs
+  lottie: ^0.5.1
 
   # For Model
   json_serializable: ^3.3.0
