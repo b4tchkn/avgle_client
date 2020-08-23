@@ -39,8 +39,4 @@ class HomePage extends HookWidget {
       ),
     );
   }
-
-  void getVideosMore(String page) {
-    debugPrint('getVideosMore');
-  }
 }
