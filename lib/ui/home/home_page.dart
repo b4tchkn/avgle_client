@@ -25,16 +25,20 @@ class HomePage extends HookWidget {
     return Scaffold(
       body: Center(
         child: !viewModel.isLoading
-            ? ListView.builder(
-                controller: _scrollController,
-                itemCount: viewModel.videos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    child: Image(
-                      image: NetworkImage(viewModel.videos[index].previewUrl),
-                    ),
-                  );
-                })
+            ? RefreshIndicator(
+                onRefresh: () => viewModel.refreshAndGetVideos(),
+                child: ListView.builder(
+                    controller: _scrollController,
+                    itemCount: viewModel.videos.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: Image(
+                          image:
+                              NetworkImage(viewModel.videos[index].previewUrl),
+                        ),
+                      );
+                    }),
+              )
             : const CircularProgressIndicator(),
       ),
     );

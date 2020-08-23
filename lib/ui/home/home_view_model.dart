@@ -36,4 +36,11 @@ class HomeViewModel extends ChangeNotifier {
       debugPrint('Avgle: getVideoError $error');
     });
   }
+
+  Future<void> refreshAndGetVideos() {
+    _pageCount = -1;
+    _videos.clear();
+    notifyListeners();
+    return getVideos();
+  }
 }
