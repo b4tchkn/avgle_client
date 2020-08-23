@@ -28,7 +28,6 @@ dependencies:
   logger: any
 
   # For UIs
-  transparent_image: ^1.0.0
 
   # For Model
   json_serializable: ^3.3.0

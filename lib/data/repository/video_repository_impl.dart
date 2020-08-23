@@ -10,7 +10,7 @@ class VideoRepositoryImpl implements VideoRepository {
   final VideoDataSource _dataSource;
 
   @override
-  Future<VideoRes> getVideos() async {
-    return _dataSource.getVideos("0");
+  Future<VideoRes> getVideos(page) async {
+    return _dataSource.getVideos(page);
   }
 }

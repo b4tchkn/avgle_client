@@ -15,13 +15,17 @@ class HomeViewModel extends ChangeNotifier {
 
   VideoRes _videoRes;
   VideoRes get videoRes => _videoRes;
+  bool isLoading = false;
+  List<Video> _videos;
+  List<Video> get videos => _videos;
 
-  Future<VideoRes> getVideos() async {
-    return _repository
-        .getVideos()
-        .then(
-          (value) => _videoRes = value,
-        )
-        .catchError((dynamic error) {});
+  Future<VideoRes> getVideos(String page) async {
+    isLoading = true;
+    notifyListeners();
+    return _repository.getVideos(page).then((value) {
+      isLoading = false;
+      _videoRes = value;
+      return _videoRes = value;
+    }).catchError((dynamic error) {});
   }
 }
