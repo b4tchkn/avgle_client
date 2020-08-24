@@ -8,8 +8,12 @@ class LibraryPage extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Lottie.network(
-            'https://assets7.lottiefiles.com/packages/lf20_C31OHO.json'),
+        child: Column(
+          children: [
+            Lottie.asset('assets/lotties/23920-error-state-dog.json'),
+            const Text('This is Library Page, coming soon.')
+          ],
+        ),
       ),
     );
   }

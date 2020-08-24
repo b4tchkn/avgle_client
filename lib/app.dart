@@ -38,7 +38,7 @@ class App extends HookWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Image.asset(
-            'images/logo.png',
+            'assets/images/logo.png',
             height: 40,
           ),
           actions: [
