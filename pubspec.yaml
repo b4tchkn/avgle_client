@@ -33,6 +33,9 @@ dependencies:
   # For Model
   json_serializable: ^3.3.0
 
+  # For DateTime
+  intl: ^0.16.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
