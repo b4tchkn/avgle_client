@@ -138,11 +138,6 @@ class HomePage extends HookWidget {
                       ),
                       onPressed: () {
                         _showModalBottomSheet(context, video);
-//                        Scaffold.of(context).showSnackBar(
-//                          const SnackBar(
-//                            content: Text('Tapped more'),
-//                          ),
-//                        );
                       },
                     ),
                   ),
