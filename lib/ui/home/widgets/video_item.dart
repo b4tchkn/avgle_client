@@ -1,4 +1,6 @@
 import 'package:avgleclient/data/model/video_res.dart';
+import 'package:avgleclient/ui/core/VideoWebView.dart';
+import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:avgleclient/ui/home/widgets/VideoMoreModalBottomSheet.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,18 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class VideoItem extends StatelessWidget {
-  const VideoItem({this.video, this.context});
+  const VideoItem(
+      {@required this.viewModel, @required this.video, @required this.context});
 
+  final HomeViewModel viewModel;
   final Video video;
   final BuildContext context;
 
   @override
   Widget build(BuildContext context) {
-    final viewCount = Converters.toViewCountFormatted(video.viewnumber);
-    final addedAt = Converters.toAddedAtFormatted(video.addtime);
+    final _viewCount = Converters.toViewCountFormatted(video.viewnumber);
+    final _addedAt = Converters.toAddedAtFormatted(video.addtime);
 
     return InkWell(
-      onTap: () => {debugPrint('video押された')},
+      onTap: () => {
+        Navigator.push<Widget>(
+            context,
+            MaterialPageRoute(
+                builder: (context) => VideoWebView(video.videoUrl)))
+      },
       child: Container(
         child: Column(
           children: [
@@ -88,7 +97,7 @@ class VideoItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text('$viewCount・$addedAt'),
+                          Text('$_viewCount・$_addedAt'),
                         ],
                       ),
                     ),

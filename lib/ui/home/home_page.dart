@@ -35,7 +35,9 @@ class HomePage extends HookWidget {
                   itemCount: viewModel.videos.length,
                   itemBuilder: (BuildContext context, int index) {
                     return VideoItem(
-                        video: viewModel.videos[index], context: context);
+                        viewModel: viewModel,
+                        video: viewModel.videos[index],
+                        context: context);
                   },
                 ),
               )

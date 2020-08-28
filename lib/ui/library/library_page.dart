@@ -11,7 +11,7 @@ class LibraryPage extends HookWidget {
         child: Column(
           children: [
             Lottie.asset('assets/lotties/23920-error-state-dog.json'),
-            const Text('This is Library Page, coming soon.')
+            const Text('This is Library Page, coming soon.'),
           ],
         ),
       ),

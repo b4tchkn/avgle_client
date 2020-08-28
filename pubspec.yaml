@@ -36,6 +36,9 @@ dependencies:
   # For DateTime
   intl: ^0.16.1
 
+  # For Webview
+  webview_flutter: ^0.3.22+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
