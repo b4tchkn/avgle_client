@@ -1,6 +1,7 @@
 import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/UserIconButton.dart';
 import 'package:avgleclient/ui/explore/explore_page.dart';
 import 'package:avgleclient/ui/home/home_page.dart';
 import 'package:avgleclient/ui/library/library_page.dart';
@@ -46,26 +47,7 @@ class App extends HookWidget {
               icon: const Icon(Icons.search),
               onPressed: () {},
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Material(
-                elevation: 4.0,
-                shape: const CircleBorder(),
-                clipBehavior: Clip.hardEdge,
-                color: Colors.transparent,
-                child: Ink.image(
-                  image: const NetworkImage(
-                    'https://avgle.com/media/users/nopic-Male.gif',
-                  ),
-                  fit: BoxFit.cover,
-                  width: 40.0,
-                  height: 40.0,
-                  child: InkWell(
-                    onTap: () {},
-                  ),
-                ),
-              ),
-            ),
+            UserIconButton(),
           ],
         ),
         body: _pages[appNotifier.currentIndex],
