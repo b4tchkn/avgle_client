@@ -39,6 +39,9 @@ dependencies:
   # For Webview
   webview_flutter: ^0.3.22+1
 
+  # For Firebase
+  firebase_core: ^0.2.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
