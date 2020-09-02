@@ -111,3 +111,7 @@ node_modules/
 
 ## Test coverage
 coverage/
+
+# Firebase
+**/google-services.json
+**/GoogleService-Info.plist
