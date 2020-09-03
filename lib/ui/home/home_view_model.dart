@@ -33,7 +33,7 @@ class HomeViewModel extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }).catchError((dynamic error) {
-      debugPrint('Avgle: getVideoError $error');
+      debugPrint('getVideoError $error');
     });
   }
 

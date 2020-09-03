@@ -1,7 +1,6 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -36,7 +35,6 @@ class DebugPage extends StatelessWidget {
   }
 
   Future<User> _signIn() async {
-    await Firebase.initializeApp();
     var currentUser = googleSignIn.currentUser;
     try {
       currentUser ??= await googleSignIn.signIn();
