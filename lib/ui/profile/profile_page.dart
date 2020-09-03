@@ -1,16 +1,11 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:avgleclient/ui/debug/debug_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfilePage extends HookWidget {
-  final auth = FirebaseAuth.instance;
-  final googleSignIn = GoogleSignIn();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,36 +17,20 @@ class ProfilePage extends HookWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const Divider(),
               FlatButton(
-                child: Text('Google'),
+                child: const Text(Strings.debugPageTitle),
                 color: AppColors.lightGrey,
                 onPressed: () {
-                  _signIn().then((value) => debugPrint(value.displayName));
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(builder: (_) => DebugPage()),
+                  );
                 },
-              )
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Future<User> _signIn() async {
-    await Firebase.initializeApp();
-    var currentUser = googleSignIn.currentUser;
-    try {
-      currentUser ??= await googleSignIn.signIn();
-
-      final googleAuth = await currentUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-      final user = (await auth.signInWithCredential(credential)).user;
-      debugPrint('signed in $user');
-
-      return user;
-    } catch (e) {
-      debugPrint(e.toString());
-      return null;
-    }
   }
 }

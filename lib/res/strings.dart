@@ -7,4 +7,7 @@ class Strings {
   static const homeModalBottomSheetSavePlayList = '再生リストに保存';
 
   static const profileAppBarTitle = 'アカウント';
+  static const profileSignInWithGoogle = 'Googleでサインイン';
+
+  static const debugPageTitle = 'デバッグ画面';
 }
