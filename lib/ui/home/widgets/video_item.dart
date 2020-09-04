@@ -112,7 +112,7 @@ class VideoItem extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
-                        _showModalBottomSheet(context, video);
+                        _showModalBottomSheet(context);
                       },
                     ),
                   ),
@@ -125,11 +125,12 @@ class VideoItem extends StatelessWidget {
     );
   }
 
-  void _showModalBottomSheet(BuildContext context, Video video) {
+  void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet<String>(
       context: context,
       builder: (BuildContext bc) {
         return VideoMoreModalBottomSheet(
+          viewModel: viewModel,
           video: video,
         );
       },

@@ -85,4 +85,23 @@ class Video {
   final bool private;
   final String vid;
   final String uid;
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'keyword': keyword,
+        'duration': duration,
+        'framerate': framerate,
+        'hd': hd,
+        'addtime': addtime,
+        'viewnumber': viewnumber,
+        'likes': likes,
+        'dislikes': dislikes,
+        'videoUrl': videoUrl,
+        'embeddedUrl': embeddedUrl,
+        'previewUrl': previewUrl,
+        'previewVideoUrl': previewVideoUrl,
+        'private': private,
+        'vid': vid,
+        'uid': uid,
+      };
 }

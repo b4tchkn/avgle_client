@@ -1,13 +1,16 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VideoMoreModalBottomSheet extends StatelessWidget {
-  const VideoMoreModalBottomSheet({@required this.video});
+  const VideoMoreModalBottomSheet(
+      {@required this.viewModel, @required this.video});
 
   final Video video;
+  final HomeViewModel viewModel;
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -60,6 +63,13 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.homeModalBottomSheetSaveWatchLater),
           onTap: () {
             // TODO 後で見るに保存する処理
+            debugPrint('VideoMoreModalBottomSheetの中| ${video.title}');
+            viewModel.addVideoInWatchLater(video);
+//            viewModel.addVideoInWatchLater(video).then((value) {
+//              debugPrint('VideoMoreModalBottomSheetの中|成功');
+//            }).catchError((String err) {
+//              debugPrint('VideoMoreModalBottomSheetの中|失敗');
+//            });
           },
         ),
         ListTile(
