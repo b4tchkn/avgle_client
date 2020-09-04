@@ -17,7 +17,7 @@ class _VideoDataSource implements VideoDataSource {
   String baseUrl;
 
   @override
-  getVideos(page) async {
+  fetchVideos(page) async {
     ArgumentError.checkNotNull(page, 'page');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

@@ -9,5 +9,5 @@ part 'video_data_source.g.dart';
 abstract class VideoDataSource {
   factory VideoDataSource(Dio dio, {String baseUrl}) = _VideoDataSource;
   @GET('/videos/{page}')
-  Future<VideoRes> getVideos(@Path('page') String page);
+  Future<VideoRes> fetchVideos(@Path('page') String page);
 }

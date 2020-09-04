@@ -27,7 +27,7 @@ class HomeViewModel extends ChangeNotifier {
   Future<VideoRes> getVideos() async {
     _pageCount++;
     _isLoading = true;
-    return _repository.getVideos(_pageCount.toString()).then((value) {
+    return _repository.fetchVideos(_pageCount.toString()).then((value) {
       _videoRes = value;
       _videos.addAll(value.response.videos);
       _isLoading = false;
