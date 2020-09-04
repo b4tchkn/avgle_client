@@ -11,7 +11,7 @@ class UserRepositoryImpl implements UserRepository {
   final UserDataSource _dataSource;
   @override
   Future<User> fetchUser() {
-    return _dataSource.getUser();
+    return _dataSource.fetchUser();
   }
 
   @override

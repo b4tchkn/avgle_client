@@ -8,7 +8,7 @@ class UserDataSource {
   final FirebaseAuth auth;
   final _googleSignIn = GoogleSignIn();
 
-  Future<User> getUser() async {
+  Future<User> fetchUser() async {
     return auth.currentUser;
   }
 
