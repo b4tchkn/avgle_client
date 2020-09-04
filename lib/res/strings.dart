@@ -8,6 +8,7 @@ class Strings {
 
   static const profileAppBarTitle = 'アカウント';
   static const profileSignInWithGoogle = 'Googleでサインイン';
+  static const profileSignOut = 'サインアウト';
 
   static const debugPageTitle = 'デバッグ画面';
 }

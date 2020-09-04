@@ -17,15 +17,20 @@ class ProfileViewModel extends ChangeNotifier {
   User get user => _user;
 
   Future<void> fetchUser() async {
-    _user = await _repository.getUser();
+    final user = await _repository.fetchUser();
+    _user = await _repository.fetchUser();
+    debugPrint(user.toString());
     notifyListeners();
   }
 
   Future<void> signIn() async {
     _user = await _repository.signIn();
+    notifyListeners();
   }
 
-  void signOut() {
-    _repository.signOut();
+  Future<void> signOut() async {
+    // ignore: unnecessary_parenthesis
+    _user = await (_repository.signOut()) as User;
+    notifyListeners();
   }
 }

@@ -19,7 +19,7 @@ class UserDataSource {
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
       final user = (await auth.signInWithCredential(credential)).user;
-      debugPrint('signed in $user');
+      debugPrint('signIn signed in $user');
       return user;
     } catch (e) {
       debugPrint(e.toString());
@@ -32,12 +32,12 @@ class UserDataSource {
     try {
       if (currentUser != null) {
         await googleSignIn.signOut().then(
-            (value) => {currentUser = value, debugPrint(value.toString())});
+            (value) => {currentUser = value, debugPrint('signOut $value')});
       }
       return currentUser;
     } catch (e) {
       debugPrint(e.toString());
-      return null;
+      return currentUser;
     }
   }
 }
