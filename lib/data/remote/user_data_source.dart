@@ -3,17 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserDataSource {
-  final auth = FirebaseAuth.instance;
-  final googleSignIn = GoogleSignIn();
+  UserDataSource(this.auth);
+
+  final FirebaseAuth auth;
+  final _googleSignIn = GoogleSignIn();
 
   Future<User> getUser() async {
     return auth.currentUser;
   }
 
   Future<User> signIn() async {
-    var currentUser = googleSignIn.currentUser;
+    var currentUser = _googleSignIn.currentUser;
     try {
-      currentUser ??= await googleSignIn.signIn();
+      currentUser ??= await _googleSignIn.signIn();
 
       final googleAuth = await currentUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -28,10 +30,10 @@ class UserDataSource {
   }
 
   Future<GoogleSignInAccount> signOut() async {
-    var currentUser = googleSignIn.currentUser;
+    var currentUser = _googleSignIn.currentUser;
     try {
       if (currentUser != null) {
-        await googleSignIn.signOut().then(
+        await _googleSignIn.signOut().then(
             (value) => {currentUser = value, debugPrint('signOut $value')});
       }
       return currentUser;
