@@ -44,13 +44,6 @@ class ProfilePage extends HookWidget {
                   viewModel.signOut();
                 },
               ),
-              FlatButton(
-                child: const Text('Userとる'),
-                color: AppColors.lightGrey,
-                onPressed: () {
-                  viewModel.fetchUser();
-                },
-              ),
               const Divider(),
               FlatButton(
                 child: const Text(Strings.debugPageTitle),
