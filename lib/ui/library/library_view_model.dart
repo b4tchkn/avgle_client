@@ -38,8 +38,8 @@ class LibraryViewModel extends ChangeNotifier {
   Future<void> fetchRecentlyWatchedVideos() async {
     final res = await _firebaseVideoRepository.fetchRecentlyWatchedVideos();
     // ignore: avoid_function_literals_in_foreach_calls
-    res.docs.forEach((element) {
-      _recentlyWatchedVideos.add(Video.fromJson(element.data()));
+    res.docs.forEach((video) {
+      _recentlyWatchedVideos.add(Video.fromJson(video.data()));
     });
     notifyListeners();
   }
