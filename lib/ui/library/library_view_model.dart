@@ -38,6 +38,11 @@ class LibraryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> signIn() async {
+    _user = await _userRepository.signIn();
+    notifyListeners();
+  }
+
   Future<void> fetchRecentlyWatchedVideos() async {
     _recentlyWatchedVideos =
         await _firebaseVideoRepository.fetchRecentlyWatchedVideos();

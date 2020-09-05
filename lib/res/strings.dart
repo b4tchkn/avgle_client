@@ -22,4 +22,5 @@ class Strings {
   static const libraryPlayList = '再生リスト';
   static const libraryNewPlayList = '新しい再生リスト';
   static const libraryPleaseSignIn = 'サインインしてください';
+  static const librarySignInWithGoogle = 'Googleでサインイン';
 }

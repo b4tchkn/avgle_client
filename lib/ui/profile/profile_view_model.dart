@@ -17,9 +17,7 @@ class ProfileViewModel extends ChangeNotifier {
   User get user => _user;
 
   Future<void> fetchUser() async {
-    final user = await _repository.fetchUser();
     _user = await _repository.fetchUser();
-    debugPrint(user.toString());
     notifyListeners();
   }
 

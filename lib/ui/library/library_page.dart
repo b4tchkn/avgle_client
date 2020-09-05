@@ -2,13 +2,13 @@ import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/res/text_styles.dart';
+import 'package:avgleclient/ui/core/google_sign_in_button.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:lottie/lottie.dart';
 
 class LibraryPage extends HookWidget {
   @override
@@ -89,12 +89,14 @@ class LibraryPage extends HookWidget {
         body: Center(
           child: !viewModel.isLoading
               ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(Strings.libraryPleaseSignIn),
-                    FlatButton(
-                      child: const Text('sign in'),
-                      onPressed: () {},
-                    ),
+                    GoogleSignInButton(
+                      viewModel: viewModel,
+                    )
                   ],
                 )
               : const CircularProgressIndicator(),
