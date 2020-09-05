@@ -1,8 +1,8 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:flutter/cupertino.dart';
 
-class WatchRecentlyItem extends StatelessWidget {
-  const WatchRecentlyItem({@required Video video}) : _video = video;
+class RecentlyWatchedItem extends StatelessWidget {
+  const RecentlyWatchedItem({@required Video video}) : _video = video;
 
   final Video _video;
   @override

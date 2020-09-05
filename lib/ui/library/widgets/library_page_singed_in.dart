@@ -1,6 +1,7 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/res/text_styles.dart';
+import 'package:avgleclient/ui/core/shimmer_container.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,7 +29,7 @@ class LibraryPageSignedIn extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
               child: WatchRecentlyCarouselList(
-                recentlyWatchedVideos: _viewModel.recentlyWatchedVideos,
+                viewModel: _viewModel,
               ),
             ),
             const Divider(thickness: 1),

@@ -29,6 +29,7 @@ dependencies:
 
   # For UIs
   lottie: ^0.5.1
+  shimmer: ^1.1.1
 
   # For Model
   json_serializable: ^3.3.0
