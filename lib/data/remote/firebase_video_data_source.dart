@@ -29,4 +29,12 @@ class FirebaseVideoDataSource {
         .doc(video.vid);
     return userDataRef.set(video.toJson());
   }
+
+  Future<QuerySnapshot> fetchRecentlyWatchedVideos() {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('history');
+    return userDataRef.get();
+  }
 }
