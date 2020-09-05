@@ -5,14 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserDataSource {
-  UserDataSource({this.auth, this.store});
+  UserDataSource(
+      {@required FirebaseAuth auth, @required FirebaseFirestore store})
+      : _auth = auth,
+        _store = store;
 
-  final FirebaseAuth auth;
-  final FirebaseFirestore store;
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _store;
   final _googleSignIn = GoogleSignIn();
 
   Future<User> fetchUser() async {
-    return auth.currentUser;
+    return _auth.currentUser;
   }
 
   Future<User> signIn() async {
@@ -23,7 +26,7 @@ class UserDataSource {
       final googleAuth = await currentUser.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-      final user = (await auth.signInWithCredential(credential)).user;
+      final user = (await _auth.signInWithCredential(credential)).user;
       debugPrint('signIn signed in $user');
       return user;
     } catch (e) {
@@ -47,8 +50,8 @@ class UserDataSource {
   }
 
   Future<void> addVideoInWatchLater(Video video) {
-    final userData = store
-        .collection(auth.currentUser.uid)
+    final userData = _store
+        .collection(_auth.currentUser.uid)
         .doc('data')
         .collection('watch_later')
         .doc(video.uid);
