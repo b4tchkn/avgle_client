@@ -72,7 +72,7 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
               showSimpleSnackBar(
                   buildContext, Strings.homeSaveWatchLaterSuccess);
             }).catchError((error) {
-              // onFailure but cant throw now
+              // onFailure
               debugPrint(error.toString());
               showSimpleSnackBar(
                   buildContext, Strings.homeSaveWatchLaterFailure);
