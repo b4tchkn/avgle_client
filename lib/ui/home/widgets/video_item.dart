@@ -9,11 +9,13 @@ import 'package:lottie/lottie.dart';
 
 class VideoItem extends StatelessWidget {
   const VideoItem(
-      {@required this.viewModel, @required this.video, @required this.context});
+      {@required this.viewModel,
+      @required this.video,
+      @required this.buildContext});
 
   final HomeViewModel viewModel;
   final Video video;
-  final BuildContext context;
+  final BuildContext buildContext;
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +114,7 @@ class VideoItem extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
-                        _showModalBottomSheet(context);
+                        _showModalBottomSheet(buildContext);
                       },
                     ),
                   ),
@@ -125,13 +127,14 @@ class VideoItem extends StatelessWidget {
     );
   }
 
-  void _showModalBottomSheet(BuildContext context) {
+  void _showModalBottomSheet(BuildContext buildContext) {
     showModalBottomSheet<String>(
-      context: context,
-      builder: (BuildContext bc) {
+      context: buildContext,
+      builder: (BuildContext _) {
         return VideoMoreModalBottomSheet(
           viewModel: viewModel,
           video: video,
+          buildContext: buildContext,
         );
       },
     );

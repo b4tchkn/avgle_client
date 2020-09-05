@@ -1,16 +1,20 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VideoMoreModalBottomSheet extends StatelessWidget {
   const VideoMoreModalBottomSheet(
-      {@required this.viewModel, @required this.video});
+      {@required this.viewModel,
+      @required this.video,
+      @required this.buildContext});
 
   final Video video;
   final HomeViewModel viewModel;
+  final BuildContext buildContext;
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -62,14 +66,17 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           leading: const Icon(Icons.access_time),
           title: const Text(Strings.homeModalBottomSheetSaveWatchLater),
           onTap: () {
-            // TODO 後で見るに保存する処理
-            debugPrint('VideoMoreModalBottomSheetの中| ${video.title}');
-            viewModel.addVideoInWatchLater(video);
-//            viewModel.addVideoInWatchLater(video).then((value) {
-//              debugPrint('VideoMoreModalBottomSheetの中|成功');
-//            }).catchError((String err) {
-//              debugPrint('VideoMoreModalBottomSheetの中|失敗');
-//            });
+            Navigator.pop(context);
+            viewModel.addVideoInWatchLater(video).then((value) {
+              // onSuccess
+              showSimpleSnackBar(
+                  buildContext, Strings.homeSaveWatchLaterSuccess);
+            }).catchError((error) {
+              // onFailure but cant throw now
+              debugPrint(error.toString());
+              showSimpleSnackBar(
+                  buildContext, Strings.homeSaveWatchLaterFailure);
+            });
           },
         ),
         ListTile(

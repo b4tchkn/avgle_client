@@ -26,23 +26,46 @@ class HomePage extends HookWidget {
       }
     });
     return Scaffold(
-      body: Center(
-        child: !viewModel.isLoading
-            ? RefreshIndicator(
-                onRefresh: () => viewModel.refreshAndGetVideos(),
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount: viewModel.videos.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return VideoItem(
-                        viewModel: viewModel,
-                        video: viewModel.videos[index],
-                        context: context);
-                  },
-                ),
-              )
-            : const CircularProgressIndicator(),
+      body: Builder(
+        builder: (BuildContext buildContext) {
+          return Center(
+            child: !viewModel.isLoading
+                ? RefreshIndicator(
+                    onRefresh: () => viewModel.refreshAndGetVideos(),
+                    child: ListView.builder(
+                        controller: scrollController,
+                        itemCount: viewModel.videos.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return VideoItem(
+                            viewModel: viewModel,
+                            video: viewModel.videos[index],
+                            buildContext: buildContext,
+                          );
+                        }),
+                  )
+                : const CircularProgressIndicator(),
+          );
+        },
       ),
     );
+//    return Scaffold(
+//      body: Center(
+//        child: !viewModel.isLoading
+//            ? RefreshIndicator(
+//                onRefresh: () => viewModel.refreshAndGetVideos(),
+//                child: ListView.builder(
+//                  controller: scrollController,
+//                  itemCount: viewModel.videos.length,
+//                  itemBuilder: (BuildContext context, int index) {
+//                    return VideoItem(
+//                        viewModel: viewModel,
+//                        video: viewModel.videos[index],
+//                        context: context);
+//                  },
+//                ),
+//              )
+//            : const CircularProgressIndicator(),
+//      ),
+//    );
   }
 }

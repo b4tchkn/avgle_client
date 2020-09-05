@@ -4,6 +4,8 @@ class Strings {
   static const bottomNavItemLibraryTitle = 'ライブラリ';
 
   static const homeModalBottomSheetSaveWatchLater = '後で見るに保存';
+  static const homeSaveWatchLaterSuccess = '後で見るに保存しました';
+  static const homeSaveWatchLaterFailure = '保存できませんでした';
   static const homeModalBottomSheetSavePlayList = '再生リストに保存';
 
   static const profileAppBarTitle = 'アカウント';
