@@ -22,6 +22,9 @@ class LibraryViewModel extends ChangeNotifier {
   final UserRepository _userRepository;
   final FirebaseVideoRepository _firebaseVideoRepository;
 
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
   User _user;
   User get user => _user;
 
@@ -29,9 +32,9 @@ class LibraryViewModel extends ChangeNotifier {
   List<Video> get recentlyWatchedVideos => _recentlyWatchedVideos;
 
   Future<void> fetchUser() async {
-    final user = await _userRepository.fetchUser();
+    _isLoading = true;
     _user = await _userRepository.fetchUser();
-    debugPrint(user.toString());
+    _isLoading = false;
     notifyListeners();
   }
 

@@ -21,4 +21,5 @@ class Strings {
   static const libraryWatchLater = '後で見る';
   static const libraryPlayList = '再生リスト';
   static const libraryNewPlayList = '新しい再生リスト';
+  static const libraryPleaseSignIn = 'サインインしてください';
 }

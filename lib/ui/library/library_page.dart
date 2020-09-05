@@ -22,7 +22,7 @@ class LibraryPage extends HookWidget {
         useMemoized(() => viewModel.fetchUser(), [error.peekContent()?.type]);
     useFuture(fetchUser);
     useFuture(fetchRecentlyWatchedVideos);
-    if (viewModel.user != null) {
+    if (viewModel.user != null && !viewModel.isLoading) {
       return Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -87,12 +87,17 @@ class LibraryPage extends HookWidget {
     } else {
       return Scaffold(
         body: Center(
-          child: Column(
-            children: [
-              Lottie.asset('assets/lotties/23920-error-state-dog.json'),
-              Text('ログインしてください'),
-            ],
-          ),
+          child: !viewModel.isLoading
+              ? Column(
+                  children: [
+                    const Text(Strings.libraryPleaseSignIn),
+                    FlatButton(
+                      child: const Text('sign in'),
+                      onPressed: () {},
+                    ),
+                  ],
+                )
+              : const CircularProgressIndicator(),
         ),
       );
     }
