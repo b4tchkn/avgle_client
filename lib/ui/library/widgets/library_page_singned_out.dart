@@ -15,34 +15,33 @@ class LibraryPageSignedOut extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: !_viewModel.isLoading
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 300,
-                    child: Lottie.network(
-                        'https://assets8.lottiefiles.com/private_files/lf30_imyUMa.json'),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: Text(
-                      Strings.libraryPleaseSignIn,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  GoogleSignInButton(
-                    viewModel: _viewModel,
-                  )
-                ],
-              )
-            : const CircularProgressIndicator(),
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 300,
+            child: Lottie.network(
+                'https://assets8.lottiefiles.com/private_files/lf30_imyUMa.json'),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              Strings.libraryPleaseSignIn,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+          GoogleSignInButton(
+            viewModel: _viewModel,
+          )
+        ],
+      )
+//            : const CircularProgressIndicator(),
+          ),
     );
   }
 }
