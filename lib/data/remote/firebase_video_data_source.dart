@@ -20,4 +20,13 @@ class FirebaseVideoDataSource {
         .doc(video.vid);
     return userDataRef.set(video.toJson());
   }
+
+  Future<void> addVideoInHistory(Video video) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('history')
+        .doc(video.vid);
+    return userDataRef.set(video.toJson());
+  }
 }

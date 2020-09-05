@@ -55,4 +55,8 @@ class HomeViewModel extends ChangeNotifier {
   Future<void> addVideoInWatchLater(Video video) {
     return _firebaseVideoRepository.addVideoInWatchLater(video);
   }
+
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
 }

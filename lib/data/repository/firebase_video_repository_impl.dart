@@ -12,4 +12,9 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<void> addVideoInWatchLater(Video video) {
     return _dataSource.addVideoInWatchLater(video);
   }
+
+  @override
+  Future<void> addVideoInHistory(Video video) {
+    return _dataSource.addVideoInHistory(video);
+  }
 }
