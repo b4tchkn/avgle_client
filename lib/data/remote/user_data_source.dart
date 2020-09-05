@@ -13,11 +13,10 @@ class UserDataSource {
   }
 
   Future<User> signIn() async {
-    var currentUser = _googleSignIn.currentUser;
     try {
-      currentUser ??= await _googleSignIn.signIn();
+      await _googleSignIn.signIn();
 
-      final googleAuth = await currentUser.authentication;
+      final googleAuth = await _googleSignIn.currentUser.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
       final user = (await _auth.signInWithCredential(credential)).user;
@@ -25,21 +24,43 @@ class UserDataSource {
       return user;
     } catch (e) {
       debugPrint(e.toString());
-      return null;
+      return _auth.currentUser;
     }
   }
 
-  Future<GoogleSignInAccount> signOut() async {
-    var currentUser = _googleSignIn.currentUser;
+  Future<User> signOut() async {
+    var result = _auth.currentUser;
+    var googleSignOutResult = _googleSignIn.currentUser;
+    var authSignOutResult = _auth.currentUser;
+
     try {
-      if (currentUser != null) {
-        await _googleSignIn.signOut().then(
-            (value) => {currentUser = value, debugPrint('signOut $value')});
+      if (_googleSignIn.currentUser != null && _auth.currentUser != null) {
+        await _auth
+            .signOut()
+            .then((_) => {
+                  debugPrint('signOut success'),
+                  authSignOutResult = null,
+                })
+            .catchError((_) => {
+                  debugPrint('auth signOut error'),
+                });
+        await _googleSignIn
+            .signOut()
+            .then((_) => {
+                  googleSignOutResult = null,
+                })
+            .catchError((_) => {
+                  debugPrint('google signOut error'),
+                });
       }
-      return currentUser;
+      if (googleSignOutResult == null && authSignOutResult == null) {
+        result = null;
+      }
+      debugPrint('signOut signedOut in $result');
+      return result;
     } catch (e) {
       debugPrint(e.toString());
-      return currentUser;
+      return result;
     }
   }
 }

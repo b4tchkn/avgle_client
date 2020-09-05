@@ -2,7 +2,6 @@ import 'package:avgleclient/data/remote/user_data_source.dart';
 import 'package:avgleclient/data/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({@required UserDataSource dataSource})
@@ -20,7 +19,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<GoogleSignInAccount> signOut() {
+  Future<User> signOut() {
     return _dataSource.signOut();
   }
 }
