@@ -9,25 +9,31 @@ import 'package:lottie/lottie.dart';
 
 class VideoItem extends StatelessWidget {
   const VideoItem(
-      {@required this.viewModel,
-      @required this.video,
-      @required this.buildContext});
+      {@required HomeViewModel viewModel,
+      @required Video video,
+      @required BuildContext buildContext})
+      : _viewModel = viewModel,
+        _video = video,
+        _buildContext = buildContext;
 
-  final HomeViewModel viewModel;
-  final Video video;
-  final BuildContext buildContext;
+  final HomeViewModel _viewModel;
+  final Video _video;
+  final BuildContext _buildContext;
 
   @override
   Widget build(BuildContext context) {
-    final _viewCount = Converters.toViewCountFormatted(video.viewnumber);
-    final _addedAt = Converters.toAddedAtFormatted(video.addtime);
+    final _viewCount = Converters.toViewCountFormatted(_video.viewnumber);
+    final _addedAt = Converters.toAddedAtFormatted(_video.addtime);
 
     return InkWell(
       onTap: () => {
         Navigator.push<Widget>(
             context,
             MaterialPageRoute(
-                builder: (context) => VideoWebView(video.videoUrl)))
+                builder: (context) => VideoWebView(
+                      videoUrl: _video.videoUrl,
+                    )))
+        // TODO 視聴履歴に追加する処理
       },
       child: Container(
         child: Column(
@@ -35,16 +41,16 @@ class VideoItem extends StatelessWidget {
             Stack(
               children: [
                 Ink.image(
-                  image: NetworkImage(video.previewUrl),
+                  image: NetworkImage(_video.previewUrl),
                   fit: BoxFit.cover,
                   height: 220,
                 ),
                 Positioned(
                   bottom: 8,
                   right: 8,
-                  child: Text(video.duration.toString()),
+                  child: Text(_video.duration.toString()),
                 ),
-                if (video.hd)
+                if (_video.hd)
                   Positioned(
                     top: 8,
                     right: 8,
@@ -75,7 +81,7 @@ class VideoItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            video.title,
+                            _video.title,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: const TextStyle(
@@ -90,7 +96,7 @@ class VideoItem extends StatelessWidget {
                               bottom: 4,
                             ),
                             child: Text(
-                              video.keyword,
+                              _video.keyword,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
@@ -114,7 +120,7 @@ class VideoItem extends StatelessWidget {
                         size: 20,
                       ),
                       onPressed: () {
-                        _showModalBottomSheet(buildContext);
+                        _showModalBottomSheet(_buildContext);
                       },
                     ),
                   ),
@@ -132,8 +138,8 @@ class VideoItem extends StatelessWidget {
       context: buildContext,
       builder: (BuildContext _) {
         return VideoMoreModalBottomSheet(
-          viewModel: viewModel,
-          video: video,
+          viewModel: _viewModel,
+          video: _video,
           buildContext: buildContext,
         );
       },

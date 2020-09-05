@@ -8,13 +8,16 @@ import 'package:flutter/material.dart';
 
 class VideoMoreModalBottomSheet extends StatelessWidget {
   const VideoMoreModalBottomSheet(
-      {@required this.viewModel,
-      @required this.video,
-      @required this.buildContext});
+      {@required HomeViewModel viewModel,
+      @required Video video,
+      @required BuildContext buildContext})
+      : _viewModel = viewModel,
+        _video = video,
+        _buildContext = buildContext;
 
-  final Video video;
-  final HomeViewModel viewModel;
-  final BuildContext buildContext;
+  final HomeViewModel _viewModel;
+  final Video _video;
+  final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -27,7 +30,7 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image(
-                image: NetworkImage(video.previewUrl),
+                image: NetworkImage(_video.previewUrl),
                 height: 50,
                 width: 80,
                 fit: BoxFit.cover,
@@ -40,7 +43,7 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      video.title,
+                      _video.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -48,7 +51,7 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
                       padding: EdgeInsets.all(4),
                     ),
                     Text(
-                      '${video.duration}',
+                      '${_video.duration}',
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: const TextStyle(
@@ -67,15 +70,15 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.homeModalBottomSheetSaveWatchLater),
           onTap: () {
             Navigator.pop(context);
-            viewModel.addVideoInWatchLater(video).then((value) {
+            _viewModel.addVideoInWatchLater(_video).then((value) {
               // onSuccess
               showSimpleSnackBar(
-                  buildContext, Strings.homeSaveWatchLaterSuccess);
+                  _buildContext, Strings.homeSaveWatchLaterSuccess);
             }).catchError((error) {
               // onFailure
               debugPrint(error.toString());
               showSimpleSnackBar(
-                  buildContext, Strings.homeSaveWatchLaterFailure);
+                  _buildContext, Strings.homeSaveWatchLaterFailure);
             });
           },
         ),
