@@ -1,17 +1,11 @@
-import 'package:avgleclient/data/model/video_res.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserDataSource {
-  UserDataSource(
-      {@required FirebaseAuth auth, @required FirebaseFirestore store})
-      : _auth = auth,
-        _store = store;
+  UserDataSource({@required FirebaseAuth auth}) : _auth = auth;
 
   final FirebaseAuth _auth;
-  final FirebaseFirestore _store;
   final _googleSignIn = GoogleSignIn();
 
   Future<User> fetchUser() async {
@@ -47,14 +41,5 @@ class UserDataSource {
       debugPrint(e.toString());
       return currentUser;
     }
-  }
-
-  Future<void> addVideoInWatchLater(Video video) {
-    final userData = _store
-        .collection(_auth.currentUser.uid)
-        .doc('data')
-        .collection('watch_later')
-        .doc(video.uid);
-    return userData.set(video.toJson());
   }
 }

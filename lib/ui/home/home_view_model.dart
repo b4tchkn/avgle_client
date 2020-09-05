@@ -1,26 +1,25 @@
 import 'package:avgleclient/data/model/video_res.dart';
-import 'package:avgleclient/data/provider/user_repository_provider.dart';
+import 'package:avgleclient/data/provider/firebase_video_repository_provider.dart';
 import 'package:avgleclient/data/provider/video_repository_provider.dart';
-import 'package:avgleclient/data/repository/user_repository.dart';
+import 'package:avgleclient/data/repository/firebase_video_repository.dart';
 import 'package:avgleclient/data/repository/video_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homeViewModelNotifierProvider = ChangeNotifierProvider((ref) =>
     HomeViewModel(ref,
         videoRepository: ref.read(videoRepositoryProvider),
-        userRepository: ref.read(userRepositoryProvider)));
+        firebaseVideoRepository: ref.read(firebaseVideoRepositoryProvider)));
 
 class HomeViewModel extends ChangeNotifier {
   HomeViewModel(ProviderReference ref,
       {@required VideoRepository videoRepository,
-      @required UserRepository userRepository})
+      @required FirebaseVideoRepository firebaseVideoRepository})
       : _videoRepository = videoRepository,
-        _userRepository = userRepository;
+        _firebaseVideoRepository = firebaseVideoRepository;
 
   final VideoRepository _videoRepository;
-  final UserRepository _userRepository;
+  final FirebaseVideoRepository _firebaseVideoRepository;
 
   VideoRes _videoRes;
   VideoRes get videoRes => _videoRes;
@@ -54,6 +53,6 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   Future<void> addVideoInWatchLater(Video video) {
-    return _userRepository.addVideoInWatchLater(video);
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
   }
 }

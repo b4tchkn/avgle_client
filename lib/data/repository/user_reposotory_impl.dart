@@ -1,4 +1,3 @@
-import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/data/remote/user_data_source.dart';
 import 'package:avgleclient/data/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,10 +22,5 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<GoogleSignInAccount> signOut() {
     return _dataSource.signOut();
-  }
-
-  @override
-  Future<void> addVideoInWatchLater(Video video) {
-    return _dataSource.addVideoInWatchLater(video);
   }
 }
