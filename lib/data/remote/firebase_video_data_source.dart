@@ -2,6 +2,7 @@ import 'package:avgleclient/data/model/video_res.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class FirebaseVideoDataSource {
   FirebaseVideoDataSource(
@@ -30,12 +31,18 @@ class FirebaseVideoDataSource {
     return userDataRef.set(video.toJson());
   }
 
-  Future<QuerySnapshot> fetchRecentlyWatchedVideos() {
+  Future<List<Video>> fetchRecentlyWatchedVideos() async {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
         .doc('data')
         .collection('history')
         .limit(10);
-    return userDataRef.get();
+    final res = await userDataRef.get();
+    final newVideos = <Video>[];
+    // ignore: avoid_function_literals_in_foreach_calls
+    res.docs.forEach((video) {
+      newVideos.add(Video.fromJson(video.data()));
+    });
+    return newVideos.reversed.toList();
   }
 }

@@ -32,7 +32,9 @@ class LibraryPage extends HookWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-              child: WatchRecentlyCarouselList(),
+              child: WatchRecentlyCarouselList(
+                recentlyWatchedVideos: viewModel.recentlyWatchedVideos,
+              ),
             ),
             const Divider(thickness: 1),
             ListTile(

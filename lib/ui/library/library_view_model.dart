@@ -25,7 +25,7 @@ class LibraryViewModel extends ChangeNotifier {
   User _user;
   User get user => _user;
 
-  final List<Video> _recentlyWatchedVideos = [];
+  List<Video> _recentlyWatchedVideos = [];
   List<Video> get recentlyWatchedVideos => _recentlyWatchedVideos;
 
   Future<void> fetchUser() async {
@@ -36,11 +36,8 @@ class LibraryViewModel extends ChangeNotifier {
   }
 
   Future<void> fetchRecentlyWatchedVideos() async {
-    final res = await _firebaseVideoRepository.fetchRecentlyWatchedVideos();
-    // ignore: avoid_function_literals_in_foreach_calls
-    res.docs.forEach((video) {
-      _recentlyWatchedVideos.add(Video.fromJson(video.data()));
-    });
+    _recentlyWatchedVideos =
+        await _firebaseVideoRepository.fetchRecentlyWatchedVideos();
     notifyListeners();
   }
 }
