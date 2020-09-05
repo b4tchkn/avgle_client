@@ -34,7 +34,8 @@ class FirebaseVideoDataSource {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
         .doc('data')
-        .collection('history');
+        .collection('history')
+        .limit(10);
     return userDataRef.get();
   }
 }
