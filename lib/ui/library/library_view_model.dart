@@ -39,7 +39,9 @@ class LibraryViewModel extends ChangeNotifier {
   }
 
   Future<void> signIn() async {
+    _isLoading = true;
     _user = await _userRepository.signIn();
+    _isLoading = false;
     notifyListeners();
   }
 

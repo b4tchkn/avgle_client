@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 class LibraryPage extends HookWidget {
   @override
@@ -93,7 +94,21 @@ class LibraryPage extends HookWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(Strings.libraryPleaseSignIn),
+                    Container(
+                      height: 300,
+                      child: Lottie.network(
+                          'https://assets8.lottiefiles.com/private_files/lf30_imyUMa.json'),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: Text(
+                        Strings.libraryPleaseSignIn,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
                     GoogleSignInButton(
                       viewModel: viewModel,
                     )
