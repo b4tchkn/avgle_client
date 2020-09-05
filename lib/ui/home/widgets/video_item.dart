@@ -33,7 +33,6 @@ class VideoItem extends StatelessWidget {
                 builder: (context) => VideoWebView(
                       videoUrl: _video.videoUrl,
                     ))),
-        // TODO 視聴履歴に追加する処理
         _viewModel.addVideoInHistory(_video)
       },
       child: Container(
