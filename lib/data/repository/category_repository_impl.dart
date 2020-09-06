@@ -9,7 +9,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
 
   final CategoryDataSource _dataSource;
   @override
-  Future<CategoryRes> fetchCategory() {
+  Future<CategoryRes> fetchCategories() {
     return _dataSource.fetchCategories();
   }
 }
