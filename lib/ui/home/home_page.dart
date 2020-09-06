@@ -21,7 +21,8 @@ class HomePage extends HookWidget {
 
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
-          scrollController.position.pixels) {
+              scrollController.position.pixels &&
+          viewModel.videoRes.response.hasMore) {
         viewModel.getVideos();
       }
     });
