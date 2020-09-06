@@ -2,20 +2,19 @@ import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/snack_bar.dart';
-import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VideoMoreModalBottomSheet extends StatelessWidget {
   const VideoMoreModalBottomSheet(
-      {@required HomeViewModel viewModel,
+      {@required dynamic viewModel,
       @required Video video,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
         _buildContext = buildContext;
 
-  final HomeViewModel _viewModel;
+  final dynamic _viewModel;
   final Video _video;
   final BuildContext _buildContext;
   @override
