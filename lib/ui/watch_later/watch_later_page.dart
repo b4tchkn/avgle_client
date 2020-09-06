@@ -17,22 +17,28 @@ class WatchLaterPage extends HookWidget {
         () => viewModel.fetchWatchLaterVideos(), [error.peekContent()?.type]);
     useFuture(fetchWatchLaterVideos);
     final items = <Widget>[TopItem()];
-    // ignore: avoid_function_literals_in_foreach_calls
-    viewModel.videos.forEach((video) {
-      items.add(WatchLaterVideoListTile(
-        viewModel: viewModel,
-        video: video,
-      ));
-    });
     return Scaffold(
       appBar: AppBar(
         title: const Text(Strings.watchLaterAppBarTitle),
       ),
-      body: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return items[index];
-          }),
+      body: Builder(
+        builder: (BuildContext buildContext) {
+          // ignore: avoid_function_literals_in_foreach_calls
+          viewModel.videos.forEach((video) {
+            items.add(WatchLaterVideoListTile(
+              viewModel: viewModel,
+              video: video,
+              buildContext: buildContext,
+            ));
+          });
+          return ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              return items[index];
+            },
+          );
+        },
+      ),
     );
   }
 }

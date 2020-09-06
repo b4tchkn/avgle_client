@@ -1,17 +1,23 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
+import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
+import 'package:avgleclient/ui/watch_later/widgets/watch_later_video_more_modal_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WatchLaterVideoListTile extends StatelessWidget {
   const WatchLaterVideoListTile(
-      {@required WatchLaterViewModel viewModel, @required Video video})
+      {@required WatchLaterViewModel viewModel,
+      @required Video video,
+      @required BuildContext buildContext})
       : _viewModel = viewModel,
-        _video = video;
+        _video = video,
+        _buildContext = buildContext;
 
   final WatchLaterViewModel _viewModel;
   final Video _video;
+  final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -60,7 +66,7 @@ class WatchLaterVideoListTile extends StatelessWidget {
                   size: 20,
                 ),
                 onPressed: () {
-                  // TODO ModaiBottomSheet出す処理
+                  _showModalBottomSheet();
                 },
               ),
             )
@@ -68,5 +74,17 @@ class WatchLaterVideoListTile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showModalBottomSheet() {
+    showModalBottomSheet(
+        context: _buildContext,
+        builder: (BuildContext _) {
+          return WatchLaterVideoMoreModalBottomSheet(
+            viewModel: _viewModel,
+            video: _video,
+            buildContext: _buildContext,
+          );
+        });
   }
 }

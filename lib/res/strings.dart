@@ -28,4 +28,6 @@ class Strings {
   static const watchLaterAppBarTitle = '後で見る';
   static String watchLaterYourWatchLater(String displayName) =>
       '${displayName}の\n後で見る';
+  static const watchLaterModalBottomSheetDelete = '[後で見る]から削除';
+  static const watchLaterModalBottomSheetSavePlayList = '再生リストに保存';
 }
