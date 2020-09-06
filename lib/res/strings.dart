@@ -39,4 +39,5 @@ class Strings {
   static const historyModalBottomSheetSavePlayList = '再生リストに保存';
   static const historySaveWatchLaterSuccess = '[後で見る]に保存しました';
   static const historySaveFailure = '保存できませんでした';
+  static const historySearchHint = '再生履歴を検索します';
 }

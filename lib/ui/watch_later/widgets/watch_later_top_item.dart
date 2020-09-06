@@ -6,7 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-class TopItem extends HookWidget {
+class WatchLaterTopItem extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final user = useProvider(firebaseAuthProvider);

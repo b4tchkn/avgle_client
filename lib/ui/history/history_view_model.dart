@@ -16,10 +16,12 @@ class HistoryViewModel extends ChangeNotifier {
   final FirebaseVideoRepository _firebaseVideoRepository;
 
   List<Video> _videos = [];
-  List<Video> get videos => _videos;
+  List<Video> videos = [];
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  TextEditingController searchTextEditingController = TextEditingController();
 
   Future<void> addVideoInHistory(Video video) {
     return _firebaseVideoRepository.addVideoInHistory(video);
@@ -28,6 +30,7 @@ class HistoryViewModel extends ChangeNotifier {
   Future<void> fetchHistoryVideos() async {
     _isLoading = true;
     _videos = await _firebaseVideoRepository.fetchHistoryVideos();
+    videos = await _firebaseVideoRepository.fetchHistoryVideos();
     _isLoading = false;
     notifyListeners();
   }
@@ -40,5 +43,20 @@ class HistoryViewModel extends ChangeNotifier {
 
   Future<void> addVideoInWatchLater(Video video) {
     return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
+
+  void searchHistoryVideos() {
+    debugPrint(searchTextEditingController.text);
+    final searchText = searchTextEditingController.text;
+    final searchResult =
+        _videos.where((video) => video.title.contains(searchText)).toList();
+    videos = searchResult;
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    searchTextEditingController.dispose();
+    super.dispose();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
-import 'package:avgleclient/ui/watch_later/widgets/top_item.dart';
+import 'package:avgleclient/ui/watch_later/widgets/watch_later_top_item.dart';
 import 'package:avgleclient/ui/watch_later/widgets/watch_later_vieo_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class WatchLaterPage extends HookWidget {
     final fetchWatchLaterVideos = useMemoized(
         () => viewModel.fetchWatchLaterVideos(), [error.peekContent()?.type]);
     useFuture(fetchWatchLaterVideos);
-    final items = <Widget>[TopItem()];
+    final items = <Widget>[WatchLaterTopItem()];
     return Scaffold(
       appBar: AppBar(
         title: const Text(Strings.watchLaterAppBarTitle),
