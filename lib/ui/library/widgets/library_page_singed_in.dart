@@ -1,6 +1,7 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/res/text_styles.dart';
+import 'package:avgleclient/ui/history/history_page.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_page.dart';
@@ -40,7 +41,8 @@ class LibraryPageSignedIn extends HookWidget {
                   leading: const Icon(Icons.history),
                   title: const Text(Strings.libraryHistory),
                   onTap: () {
-                    // TODO 履歴一覧に遷移
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => HistoryPage()));
                   },
                 ),
                 ListTile(

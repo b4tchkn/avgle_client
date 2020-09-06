@@ -27,4 +27,9 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<List<Video>> fetchWatchLaterVideos() {
     return _dataSource.fetchWatchLaterVideos();
   }
+
+  @override
+  Future<List<Video>> fetchHistoryVideos() {
+    return _dataSource.fetchHistoryVideos();
+  }
 }

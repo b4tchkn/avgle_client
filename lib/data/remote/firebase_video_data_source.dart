@@ -59,4 +59,18 @@ class FirebaseVideoDataSource {
     });
     return newVideos;
   }
+
+  Future<List<Video>> fetchHistoryVideos() async {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('history');
+    final res = await userDataRef.get();
+    final newVideos = <Video>[];
+    // ignore: avoid_function_literals_in_foreach_calls
+    res.docs.forEach((video) {
+      newVideos.add(Video.fromJson(video.data()));
+    });
+    return newVideos;
+  }
 }
