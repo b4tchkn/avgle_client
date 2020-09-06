@@ -1,29 +1,46 @@
+import 'package:avgleclient/data/model/video_res.dart';
+import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/recently_watched_place_holder_item.dart';
 import 'package:avgleclient/ui/library/widgets/recently_watched_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class WatchRecentlyCarouselList extends StatelessWidget {
+class WatchRecentlyCarouselList extends HookWidget {
   const WatchRecentlyCarouselList({@required LibraryViewModel viewModel})
       : _viewModel = viewModel;
 
   final LibraryViewModel _viewModel;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 120,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: _viewModel.isLoadingRecentlyWatchedLaterVideo
-              ? 10
-              : _viewModel.recentlyWatchedVideos.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _viewModel.isLoadingRecentlyWatchedLaterVideo
-                ? RecentlyWatchedPlaceHolderItem()
-                : RecentlyWatchedItem(
-                    video: _viewModel.recentlyWatchedVideos[index],
-                  );
-          }),
-    );
+    final _auth = useProvider(firebaseAuthProvider);
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection(_auth.currentUser.uid)
+            .doc('data')
+            .collection('history')
+            .limit(10)
+            .orderBy('at_watched', descending: true)
+            .snapshots(),
+        builder: (_, snapshot) {
+          debugPrint('呼ばれたぞ');
+          return Container(
+            height: 160,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: !snapshot.hasData ? 5 : snapshot.data.docs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return !snapshot.hasData
+                      ? RecentlyWatchedPlaceHolderItem()
+                      : RecentlyWatchedItem(
+                          viewModel: _viewModel,
+                          video:
+                              Video.fromJson(snapshot.data.docs[index].data()),
+                        );
+                }),
+          );
+        });
   }
 }

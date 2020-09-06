@@ -61,6 +61,7 @@ class Video {
     this.private,
     this.vid,
     this.uid,
+    this.atWatched,
   });
 
   factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
@@ -85,6 +86,8 @@ class Video {
   final bool private;
   final String vid;
   final String uid;
+  @JsonKey(name: 'at_watched')
+  final String atWatched;
 
   Map<String, dynamic> toJson() => {
         'title': title,
@@ -96,12 +99,13 @@ class Video {
         'viewnumber': viewnumber,
         'likes': likes,
         'dislikes': dislikes,
-        'videoUrl': videoUrl,
-        'embeddedUrl': embeddedUrl,
-        'previewUrl': previewUrl,
-        'previewVideoUrl': previewVideoUrl,
+        'video_url': videoUrl,
+        'embedded_url': embeddedUrl,
+        'preview_url': previewUrl,
+        'preview_video_url': previewVideoUrl,
         'private': private,
         'vid': vid,
         'uid': uid,
+        'at_watched': DateTime.now().toLocal().toString(),
       };
 }

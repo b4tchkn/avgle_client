@@ -59,6 +59,7 @@ Video _$VideoFromJson(Map<String, dynamic> json) {
     private: json['private'] as bool,
     vid: json['vid'] as String,
     uid: json['uid'] as String,
+    atWatched: json['at_watched'] as String,
   );
 }
 
@@ -79,4 +80,5 @@ Map<String, dynamic> _$VideoToJson(Video instance) => <String, dynamic>{
       'private': instance.private,
       'vid': instance.vid,
       'uid': instance.uid,
+      'at_watched': instance.atWatched,
     };
