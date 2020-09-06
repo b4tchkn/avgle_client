@@ -21,9 +21,7 @@ class LibraryPage extends HookWidget {
         } else {
           return const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.red,
-              ),
+              child: CircularProgressIndicator(),
             ),
           );
         }
