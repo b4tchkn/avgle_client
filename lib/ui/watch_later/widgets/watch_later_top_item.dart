@@ -26,8 +26,9 @@ class WatchLaterTopItem extends HookWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Lottie.network(
-                'https://assets1.lottiefiles.com/packages/lf20_VgrHDc.json'),
+            child: Container(
+                height: 120,
+                child: Lottie.asset('assets/lotties/watch_later.json')),
           ),
         ],
       ),
