@@ -57,7 +57,9 @@ class RecentlyWatchedItem extends StatelessWidget {
                         Icons.more_vert,
                         size: 20,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO ModalBottomSheet開く
+                      },
                     ),
                   )
                 ],
