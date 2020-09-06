@@ -28,4 +28,8 @@ class LibraryViewModel extends ChangeNotifier {
   Future<void> addVideoInHistory(Video video) {
     return _firebaseVideoRepository.addVideoInHistory(video);
   }
+
+  Future<void> addVideoInWatchLater(Video video) {
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
+import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
 import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,12 +8,16 @@ import 'package:flutter/material.dart';
 
 class RecentlyWatchedItem extends StatelessWidget {
   const RecentlyWatchedItem(
-      {@required LibraryViewModel viewModel, @required Video video})
+      {@required LibraryViewModel viewModel,
+      @required Video video,
+      @required BuildContext buildContext})
       : _viewModel = viewModel,
-        _video = video;
+        _video = video,
+        _buildContext = buildContext;
 
   final LibraryViewModel _viewModel;
   final Video _video;
+  final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -59,6 +64,7 @@ class RecentlyWatchedItem extends StatelessWidget {
                       ),
                       onPressed: () {
                         // TODO ModalBottomSheet開く
+                        _showModalBottomSheet();
                       },
                     ),
                   )
@@ -75,6 +81,19 @@ class RecentlyWatchedItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showModalBottomSheet() {
+    showModalBottomSheet(
+      context: _buildContext,
+      builder: (BuildContext _) {
+        return VideoMoreModalBottomSheet(
+          viewModel: _viewModel,
+          video: _video,
+          buildContext: _buildContext,
+        );
+      },
     );
   }
 }

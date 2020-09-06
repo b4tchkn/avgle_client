@@ -9,10 +9,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class WatchRecentlyCarouselList extends HookWidget {
-  const WatchRecentlyCarouselList({@required LibraryViewModel viewModel})
-      : _viewModel = viewModel;
+  const WatchRecentlyCarouselList(
+      {@required LibraryViewModel viewModel,
+      @required BuildContext buildContext})
+      : _viewModel = viewModel,
+        _buildContext = buildContext;
 
   final LibraryViewModel _viewModel;
+  final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -30,6 +34,7 @@ class WatchRecentlyCarouselList extends HookWidget {
                           viewModel: _viewModel,
                           video:
                               Video.fromJson(snapshot.data.docs[index].data()),
+                          buildContext: _buildContext,
                         );
                 }),
           );

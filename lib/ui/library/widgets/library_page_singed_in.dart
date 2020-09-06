@@ -14,66 +14,71 @@ class LibraryPageSignedIn extends HookWidget {
   Widget build(BuildContext context) {
     final viewModel = useProvider(libraryViewModelNotifierProvider);
     return Scaffold(
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
-              child: Text(
-                Strings.libraryWatchRecently,
-                style: headerTextStyle(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-              child: WatchRecentlyCarouselList(
-                viewModel: viewModel,
-              ),
-            ),
-            const Divider(thickness: 1),
-            ListTile(
-              leading: const Icon(Icons.history),
-              title: const Text(Strings.libraryHistory),
-              onTap: () {
-                // TODO 履歴一覧に遷移
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.access_time),
-              title: const Text(Strings.libraryWatchLater),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => WatchLaterPage()));
-              },
-            ),
-            const Divider(thickness: 1),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 16, bottom: 8),
-              child: Text(
-                Strings.libraryPlayList,
-                style: headerTextStyle(),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.add,
-                color: AppColors.accentBlue,
-              ),
-              title: const Text(
-                Strings.libraryNewPlayList,
-                style: TextStyle(
-                  color: AppColors.accentBlue,
-                  fontWeight: FontWeight.bold,
+      body: Builder(
+        builder: (BuildContext buildContext) {
+          return SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
+                  child: Text(
+                    Strings.libraryWatchRecently,
+                    style: headerTextStyle(),
+                  ),
                 ),
-              ),
-              onTap: () {
-                // TODO 履歴一覧に遷移して再生リストに追加する動画を選択できるようにする
-              },
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+                  child: WatchRecentlyCarouselList(
+                    viewModel: viewModel,
+                    buildContext: buildContext,
+                  ),
+                ),
+                const Divider(thickness: 1),
+                ListTile(
+                  leading: const Icon(Icons.history),
+                  title: const Text(Strings.libraryHistory),
+                  onTap: () {
+                    // TODO 履歴一覧に遷移
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.access_time),
+                  title: const Text(Strings.libraryWatchLater),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => WatchLaterPage()));
+                  },
+                ),
+                const Divider(thickness: 1),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, left: 16, bottom: 8),
+                  child: Text(
+                    Strings.libraryPlayList,
+                    style: headerTextStyle(),
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.add,
+                    color: AppColors.accentBlue,
+                  ),
+                  title: const Text(
+                    Strings.libraryNewPlayList,
+                    style: TextStyle(
+                      color: AppColors.accentBlue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onTap: () {
+                    // TODO 履歴一覧に遷移して再生リストに追加する動画を選択できるようにする
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
