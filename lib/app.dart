@@ -1,7 +1,7 @@
 import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
-import 'package:avgleclient/ui/core/UserIconButton.dart';
+import 'package:avgleclient/ui/core/user_icon_button.dart';
 import 'package:avgleclient/ui/explore/explore_page.dart';
 import 'package:avgleclient/ui/home/home_page.dart';
 import 'package:avgleclient/ui/library/library_page.dart';

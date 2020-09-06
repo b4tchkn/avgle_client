@@ -1,5 +1,5 @@
 import 'package:avgleclient/data/model/video_res.dart';
-import 'package:avgleclient/ui/core/VideoWebView.dart';
+import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:avgleclient/ui/home/widgets/VideoMoreModalBottomSheet.dart';
 import 'package:avgleclient/util/converters.dart';

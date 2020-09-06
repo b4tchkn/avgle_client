@@ -1,6 +1,6 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
-import 'package:avgleclient/ui/core/VideoWebView.dart';
+import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
