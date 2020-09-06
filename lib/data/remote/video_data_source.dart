@@ -10,4 +10,8 @@ abstract class VideoDataSource {
   factory VideoDataSource(Dio dio, {String baseUrl}) = _VideoDataSource;
   @GET('/videos/{page}')
   Future<VideoRes> fetchVideos(@Path('page') String page);
+
+  @GET('/search/{query}/{page}')
+  Future<VideoRes> fetchSearchedVideos(
+      @Path('query') String query, @Path('page') String page);
 }
