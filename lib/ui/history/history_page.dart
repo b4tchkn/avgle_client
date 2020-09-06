@@ -22,15 +22,18 @@ class HistoryPage extends HookWidget {
       body: Builder(
         builder: (BuildContext buildContext) {
           return !viewModel.isLoading
-              ? ListView.builder(
-                  itemCount: viewModel.videos.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return HistoryVideoListTile(
-                      viewModel: viewModel,
-                      video: viewModel.videos[index],
-                      buildContext: buildContext,
-                    );
-                  })
+              ? RefreshIndicator(
+                  onRefresh: () => viewModel.refresh(),
+                  child: ListView.builder(
+                      itemCount: viewModel.videos.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return HistoryVideoListTile(
+                          viewModel: viewModel,
+                          video: viewModel.videos[index],
+                          buildContext: buildContext,
+                        );
+                      }),
+                )
               : const Center(child: CircularProgressIndicator());
         },
       ),

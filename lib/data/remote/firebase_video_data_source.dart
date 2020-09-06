@@ -64,7 +64,8 @@ class FirebaseVideoDataSource {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
         .doc('data')
-        .collection('history');
+        .collection('history')
+        .orderBy('at_watched', descending: true);
     final res = await userDataRef.get();
     final newVideos = <Video>[];
     // ignore: avoid_function_literals_in_foreach_calls

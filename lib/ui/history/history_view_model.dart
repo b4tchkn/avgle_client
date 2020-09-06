@@ -31,4 +31,10 @@ class HistoryViewModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+  Future<void> refresh() {
+    _videos.clear();
+    notifyListeners();
+    return fetchHistoryVideos();
+  }
 }
