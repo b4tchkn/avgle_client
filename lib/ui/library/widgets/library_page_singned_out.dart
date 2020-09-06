@@ -20,8 +20,7 @@ class LibraryPageSignedOut extends HookWidget {
         children: [
           Container(
             height: 300,
-            child: Lottie.network(
-                'https://assets8.lottiefiles.com/private_files/lf30_imyUMa.json'),
+            child: Lottie.asset('assets/lotties/please_sign_in.json'),
           ),
           const Padding(
             padding: EdgeInsets.all(24.0),
