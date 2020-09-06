@@ -33,4 +33,5 @@ class Strings {
 
   // For History
   static const historyAppBarTitle = '履歴';
+  static String historyVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
 }

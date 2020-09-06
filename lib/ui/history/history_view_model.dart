@@ -21,6 +21,10 @@ class HistoryViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
   Future<void> fetchHistoryVideos() async {
     _isLoading = true;
     _videos = await _firebaseVideoRepository.fetchHistoryVideos();
