@@ -26,4 +26,6 @@ class Strings {
 
   // For WatchLater
   static const watchLaterAppBarTitle = '後で見る';
+  static String watchLaterYourWatchLater(String displayName) =>
+      '${displayName}の\n後で見る';
 }
