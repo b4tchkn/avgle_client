@@ -1,6 +1,6 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
-import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
+import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
 import 'package:avgleclient/ui/watch_later/widgets/watch_later_video_more_modal_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,7 +22,13 @@ class WatchLaterVideoListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // TODO WebViewに遷移させる
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => VideoWebView(
+                      videoUrl: _video.videoUrl,
+                    )));
+        _viewModel.addVideoInHistory(_video);
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16),

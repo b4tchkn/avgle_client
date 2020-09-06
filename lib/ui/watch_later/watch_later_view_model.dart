@@ -22,4 +22,8 @@ class WatchLaterViewModel extends ChangeNotifier {
     _videos = await _firebaseVideoRepository.fetchWatchLaterVideos();
     notifyListeners();
   }
+
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
 }
