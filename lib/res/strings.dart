@@ -5,7 +5,7 @@ class Strings {
 
   // For Home
   static const homeModalBottomSheetSaveWatchLater = '後で見るに保存';
-  static const homeSaveWatchLaterSuccess = '後で見るに保存しました';
+  static const homeSaveWatchLaterSuccess = '[後で見る]に保存しました';
   static const homeSaveWatchLaterFailure = '保存できませんでした';
   static const homeModalBottomSheetSavePlayList = '再生リストに保存';
 
@@ -34,4 +34,9 @@ class Strings {
   // For History
   static const historyAppBarTitle = '履歴';
   static String historyVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
+  static const historyModalBottomSheetDelete = '[再生履歴]から削除';
+  static const historyModalBottomSheetSaveWatchLater = '[後で見る]に保存';
+  static const historyModalBottomSheetSavePlayList = '再生リストに保存';
+  static const historySaveWatchLaterSuccess = '[後で見る]に保存しました';
+  static const historySaveFailure = '保存できませんでした';
 }

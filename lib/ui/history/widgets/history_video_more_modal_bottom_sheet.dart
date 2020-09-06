@@ -1,20 +1,21 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
-import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
+import 'package:avgleclient/ui/core/snack_bar.dart';
+import 'package:avgleclient/ui/history/history_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WatchLaterVideoMoreModalBottomSheet extends StatelessWidget {
-  const WatchLaterVideoMoreModalBottomSheet(
-      {@required WatchLaterViewModel viewModel,
+class HistoryVideoMoreModalBottomSheet extends StatelessWidget {
+  const HistoryVideoMoreModalBottomSheet(
+      {@required HistoryViewModel viewModel,
       @required Video video,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
         _buildContext = buildContext;
 
-  final WatchLaterViewModel _viewModel;
+  final HistoryViewModel _viewModel;
   final Video _video;
   final BuildContext _buildContext;
   @override
@@ -66,18 +67,32 @@ class WatchLaterVideoMoreModalBottomSheet extends StatelessWidget {
         const Divider(),
         ListTile(
           leading: const Icon(Icons.delete),
-          title: const Text(Strings.watchLaterModalBottomSheetDelete),
+          title: const Text(Strings.historyModalBottomSheetDelete),
           onTap: () {
-            // TODO 後で見るから削除するための処理
             Navigator.pop(context);
+            // TODO 再生履歴から削除するための処理
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.watch_later),
+          title: const Text(Strings.historyModalBottomSheetSaveWatchLater),
+          onTap: () {
+            Navigator.pop(context);
+            _viewModel.addVideoInWatchLater(_video).then((value) {
+              showSimpleSnackBar(
+                  _buildContext, Strings.historySaveWatchLaterSuccess);
+            }).catchError((error) {
+              debugPrint(error.toString());
+              showSimpleSnackBar(_buildContext, Strings.historySaveFailure);
+            });
           },
         ),
         ListTile(
           leading: const Icon(Icons.video_library),
-          title: const Text(Strings.watchLaterModalBottomSheetSavePlayList),
+          title: const Text(Strings.historyModalBottomSheetSavePlayList),
           onTap: () {
-            // TODO プレイリストに保存するためのダイアログ表示
             Navigator.pop(context);
+            // TODO プレイリストに保存するためのダイアログ表示
           },
         )
       ],

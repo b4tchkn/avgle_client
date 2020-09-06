@@ -37,4 +37,8 @@ class HistoryViewModel extends ChangeNotifier {
     notifyListeners();
     return fetchHistoryVideos();
   }
+
+  Future<void> addVideoInWatchLater(Video video) {
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
 }

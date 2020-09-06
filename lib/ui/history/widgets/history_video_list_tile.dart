@@ -3,6 +3,7 @@ import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/history/history_view_model.dart';
+import 'package:avgleclient/ui/history/widgets/history_video_more_modal_bottom_sheet.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,5 +88,15 @@ class HistoryVideoListTile extends StatelessWidget {
     );
   }
 
-  void _showModalBottomSheet() {}
+  void _showModalBottomSheet() {
+    showModalBottomSheet(
+        context: _buildContext,
+        builder: (BuildContext _) {
+          return HistoryVideoMoreModalBottomSheet(
+            viewModel: _viewModel,
+            video: _video,
+            buildContext: _buildContext,
+          );
+        });
+  }
 }
