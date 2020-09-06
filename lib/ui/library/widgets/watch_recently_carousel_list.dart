@@ -1,8 +1,8 @@
 import 'package:avgleclient/data/model/video_res.dart';
-import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
+import 'package:avgleclient/data/provider/firebase_firestore_recently_watched_stream_provider.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
-import 'package:avgleclient/ui/library/widgets/recently_watched_place_holder_item.dart';
 import 'package:avgleclient/ui/library/widgets/recently_watched_item.dart';
+import 'package:avgleclient/ui/library/widgets/recently_watched_place_holder_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -15,17 +15,9 @@ class WatchRecentlyCarouselList extends HookWidget {
   final LibraryViewModel _viewModel;
   @override
   Widget build(BuildContext context) {
-    final _auth = useProvider(firebaseAuthProvider);
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection(_auth.currentUser.uid)
-            .doc('data')
-            .collection('history')
-            .limit(10)
-            .orderBy('at_watched', descending: true)
-            .snapshots(),
+        stream: useProvider(firebaseFirestoreRecentlyWatchedStreamProvider),
         builder: (_, snapshot) {
-          debugPrint('呼ばれたぞ');
           return Container(
             height: 160,
             child: ListView.builder(
