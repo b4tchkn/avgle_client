@@ -3,6 +3,7 @@ import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/res/text_styles.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
+import 'package:avgleclient/ui/watch_later/watch_later_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -43,7 +44,8 @@ class LibraryPageSignedIn extends HookWidget {
               leading: const Icon(Icons.access_time),
               title: const Text(Strings.libraryWatchLater),
               onTap: () {
-                // TODO 後で見る一覧に遷移
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => WatchLaterPage()));
               },
             ),
             const Divider(thickness: 1),

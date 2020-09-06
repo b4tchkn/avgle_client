@@ -23,4 +23,7 @@ class Strings {
   static const libraryNewPlayList = '新しい再生リスト';
   static const libraryPleaseSignIn = 'サインインして\nAvgleをお楽しみください';
   static const librarySignInWithGoogle = 'Googleでサインイン';
+
+  // For WatchLater
+  static const watchLaterAppBarTitle = '後で見る';
 }
