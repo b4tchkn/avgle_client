@@ -29,6 +29,7 @@ class HistoryViewModel extends ChangeNotifier {
 
   Future<void> fetchHistoryVideos() async {
     _isLoading = true;
+    searchTextEditingController.text = '';
     _videos = await _firebaseVideoRepository.fetchHistoryVideos();
     videos = await _firebaseVideoRepository.fetchHistoryVideos();
     _isLoading = false;
@@ -36,6 +37,7 @@ class HistoryViewModel extends ChangeNotifier {
   }
 
   Future<void> refresh() {
+    searchTextEditingController.text = '';
     _videos.clear();
     notifyListeners();
     return fetchHistoryVideos();
