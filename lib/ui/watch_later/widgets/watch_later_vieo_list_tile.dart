@@ -25,7 +25,7 @@ class WatchLaterVideoListTile extends StatelessWidget {
         // TODO WebViewに遷移させる
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,10 +57,7 @@ class WatchLaterVideoListTile extends StatelessWidget {
               ),
             ),
             Container(
-              height: 20,
-              width: 20,
               child: IconButton(
-                padding: const EdgeInsets.all(4),
                 icon: const Icon(
                   Icons.more_vert,
                   size: 20,
