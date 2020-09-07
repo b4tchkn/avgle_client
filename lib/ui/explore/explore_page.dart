@@ -1,5 +1,6 @@
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/ui/explore/explore_view_model.dart';
+import 'package:avgleclient/ui/explore/widgets/explore_categories_carousel_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -17,10 +18,13 @@ class ExplorePage extends HookWidget {
       body: Builder(
         builder: (BuildContext buildContext) {
           return !viewModel.isLoading
-              ? Center(
+              ? SingleChildScrollView(
                   child: Column(
                     children: [
-                      Text(viewModel.categories[0].shortname),
+                      ExploreCategoriesCarouselList(
+                        viewModel: viewModel,
+                      ),
+                      const Divider(thickness: 2),
                       Text(viewModel.count.toString()),
                     ],
                   ),
