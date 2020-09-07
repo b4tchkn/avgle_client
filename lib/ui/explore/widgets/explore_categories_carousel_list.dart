@@ -10,12 +10,14 @@ class ExploreCategoriesCarouselList extends StatelessWidget {
   final ExploreViewModel _viewModel;
   @override
   Widget build(BuildContext context) {
+    const double listHeight = 160;
+    const double itemWidth = 400;
     return Container(
-      height: 240,
+      height: listHeight,
       child: GridView.count(
         padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
         scrollDirection: Axis.horizontal,
-        childAspectRatio: 0.5,
+        childAspectRatio: listHeight / itemWidth,
         crossAxisCount: 2,
         children: List.generate(_viewModel.categories.length, (index) {
           return Card(
