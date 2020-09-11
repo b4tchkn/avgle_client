@@ -1,5 +1,6 @@
 import 'package:avgleclient/data/model/category_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
+import 'package:avgleclient/res/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +11,47 @@ class ExploreCategoryItem extends StatelessWidget {
   final Category _category;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4))),
+    return Container(
+      margin: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          colors: [
+            AppColors.pureWhite.withOpacity(0),
+            AppColors.darkGrey.withOpacity(1),
+          ],
+        ),
+      ),
       child: InkWell(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
         onTap: () {},
         child: Stack(
           children: [
-            Text(_category.name),
+            Ink.image(
+              image: NetworkImage(_category.coverUrl),
+              fit: BoxFit.cover,
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      _category.name,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      Strings.exploreCategoryVideoCount(_category.totalVideos),
+                      style: const TextStyle(fontSize: 14),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
