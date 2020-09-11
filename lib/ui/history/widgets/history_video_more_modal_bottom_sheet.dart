@@ -3,6 +3,7 @@ import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:avgleclient/ui/history/history_view_model.dart';
+import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class HistoryVideoMoreModalBottomSheet extends StatelessWidget {
                       padding: EdgeInsets.all(4),
                     ),
                     Text(
-                      '${_video.duration}',
+                      Converters.toVideoDurationFormatted(_video.duration),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: const TextStyle(
