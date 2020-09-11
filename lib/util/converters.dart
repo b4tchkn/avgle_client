@@ -30,4 +30,20 @@ class Converters {
     }
     return addedAt;
   }
+
+  static String toVideoDurationFormatted(double duration) {
+    String formattedDuration;
+
+    final h = duration ~/ 3600;
+    final m = (duration - h * 3600) ~/ 60;
+    final s = duration.toInt() - (h * 3600) - (m * 60);
+    if (h == 0) {
+      formattedDuration =
+          '${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
+    } else {
+      formattedDuration =
+          '${h.toString().padLeft(2, '0')}:${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
+    }
+    return formattedDuration;
+  }
 }

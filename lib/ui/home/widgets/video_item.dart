@@ -1,4 +1,5 @@
 import 'package:avgleclient/data/model/video_res.dart';
+import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
@@ -48,7 +49,14 @@ class VideoItem extends StatelessWidget {
                 Positioned(
                   bottom: 8,
                   right: 8,
-                  child: Text(_video.duration.toString()),
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    color: AppColors.darkGrey,
+                    child: Text(
+                      Converters.toVideoDurationFormatted(_video.duration),
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
                 ),
                 if (_video.hd)
                   Positioned(
