@@ -13,21 +13,31 @@ class ExplorePage extends HookWidget {
     final viewModel = useProvider(exploreViewModelNotifierProvider);
     final fetchCategories = useMemoized(
         () => viewModel.fetchCategories(), [error.peekContent()?.type]);
+    final fetchExploreTopJAVs =
+        useMemoized(() => viewModel.fetchExploreTopJAVs());
     useFuture(fetchCategories);
+    useFuture(fetchExploreTopJAVs);
+    final items = <Widget>[
+      ExploreCategoriesCarouselList(viewModel: viewModel),
+      const Divider(thickness: 2),
+    ];
     return Scaffold(
       body: Builder(
         builder: (BuildContext buildContext) {
+          // ignore: avoid_function_literals_in_foreach_calls
+          viewModel.topJAVs.forEach((video) {
+            items.add(Container(
+              child: Text(video.title),
+            ));
+          });
           return !viewModel.isLoading
-              ? SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ExploreCategoriesCarouselList(
-                        viewModel: viewModel,
-                      ),
-                      const Divider(thickness: 2),
-                      Text(viewModel.count.toString()),
-                    ],
-                  ),
+              ? RefreshIndicator(
+                  onRefresh: () => viewModel.onRefresh(),
+                  child: ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext _, int index) {
+                        return items[index];
+                      }),
                 )
               : const Center(
                   child: CircularProgressIndicator(),
