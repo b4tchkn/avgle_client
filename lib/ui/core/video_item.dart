@@ -1,8 +1,7 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
-import 'package:avgleclient/ui/core/video_web_view.dart';
-import 'package:avgleclient/ui/home/home_view_model.dart';
 import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
+import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +9,14 @@ import 'package:lottie/lottie.dart';
 
 class VideoItem extends StatelessWidget {
   const VideoItem(
-      {@required HomeViewModel viewModel,
+      {@required dynamic viewModel,
       @required Video video,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
         _buildContext = buildContext;
 
-  final HomeViewModel _viewModel;
+  final dynamic _viewModel;
   final Video _video;
   final BuildContext _buildContext;
 

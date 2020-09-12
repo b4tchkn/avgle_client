@@ -1,7 +1,7 @@
 import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/ui/home/home_view_model.dart';
-import 'package:avgleclient/ui/home/widgets/video_item.dart';
+import 'package:avgleclient/ui/core/video_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
