@@ -52,4 +52,12 @@ class CategoryViewModel extends ChangeNotifier {
     notifyListeners();
     return fetchCategoryVideos(categoryName);
   }
+
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
+  Future<void> addVideoInWatchLater(Video video) {
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
 }
