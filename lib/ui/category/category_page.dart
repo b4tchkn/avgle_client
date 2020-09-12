@@ -39,13 +39,21 @@ class CategoryPage extends HookWidget {
       ),
       body: Builder(
         builder: (BuildContext buildContext) {
-          viewModel.categoryVideos.forEach((video) {
-            items.add(CategoryVideoListTile(
-              viewModel: viewModel,
-              video: video,
-              buildContext: buildContext,
-            ));
-          });
+          if (viewModel.isLoading) {
+            items.add(
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else {
+            viewModel.categoryVideos.forEach((video) {
+              items.add(CategoryVideoListTile(
+                viewModel: viewModel,
+                video: video,
+                buildContext: buildContext,
+              ));
+            });
+          }
           return RefreshIndicator(
             onRefresh: () => viewModel.onRefresh(_category.slug),
             child: ListView.builder(

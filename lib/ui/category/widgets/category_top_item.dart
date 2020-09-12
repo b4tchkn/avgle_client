@@ -16,6 +16,7 @@ class CategoryTopItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Hero(
+          // ignore: unnecessary_string_interpolations
           tag: '${_category.slug}',
           child: Container(
             height: 160,
