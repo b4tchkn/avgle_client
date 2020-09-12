@@ -1,6 +1,5 @@
 import 'package:avgleclient/data/model/category_res.dart';
 import 'package:avgleclient/error_notifier.dart';
-import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/ui/category/category_view_model.dart';
 import 'package:avgleclient/ui/category/widgets/category_top_item.dart';
 import 'package:avgleclient/ui/category/widgets/category_video_list_tile.dart';
@@ -22,7 +21,10 @@ class CategoryPage extends HookWidget {
     useFuture(fetchCategoryVideos);
     final scrollController = ScrollController();
     final items = <Widget>[
-      CategoryTopItem(),
+      CategoryTopItem(
+        category: _category,
+        videoCount: viewModel.totalVideoCount,
+      ),
     ];
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==

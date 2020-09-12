@@ -26,6 +26,9 @@ class CategoryViewModel extends ChangeNotifier {
   bool _isCategoryVideosHasMore = false;
   bool get isCategoryVideosHasMore => _isCategoryVideosHasMore;
 
+  int _totalVideoCount = 0;
+  int get totalVideoCount => _totalVideoCount;
+
   final List<Video> _categoryVideos = [];
   List<Video> get categoryVideos => _categoryVideos;
 
@@ -37,6 +40,7 @@ class CategoryViewModel extends ChangeNotifier {
     return _videoRepository
         .fetchSearchedVideos(categoryName, _pageCount.toString())
         .then((value) {
+      _totalVideoCount = value.response.totalVideos;
       _isCategoryVideosHasMore = value.response.hasMore;
       _categoryVideos.addAll(value.response.videos);
       _isLoading = false;
