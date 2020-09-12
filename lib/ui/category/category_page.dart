@@ -46,19 +46,15 @@ class CategoryPage extends HookWidget {
               buildContext: buildContext,
             ));
           });
-          return !viewModel.isLoading
-              ? RefreshIndicator(
-                  onRefresh: () => viewModel.onRefresh(_category.slug),
-                  child: ListView.builder(
-                      controller: scrollController,
-                      itemCount: items.length,
-                      itemBuilder: (BuildContext _, int index) {
-                        return items[index];
-                      }),
-                )
-              : const Center(
-                  child: CircularProgressIndicator(),
-                );
+          return RefreshIndicator(
+            onRefresh: () => viewModel.onRefresh(_category.slug),
+            child: ListView.builder(
+                controller: scrollController,
+                itemCount: items.length,
+                itemBuilder: (BuildContext _, int index) {
+                  return items[index];
+                }),
+          );
         },
       ),
     );

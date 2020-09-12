@@ -15,12 +15,15 @@ class CategoryTopItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 160,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(_category.coverUrl),
+        Hero(
+          tag: '${_category.slug}',
+          child: Container(
+            height: 160,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(_category.coverUrl),
+              ),
             ),
           ),
         ),

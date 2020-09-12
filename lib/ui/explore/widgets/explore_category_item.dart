@@ -35,9 +35,15 @@ class ExploreCategoryItem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            Ink.image(
-              image: NetworkImage(_category.coverUrl),
-              fit: BoxFit.cover,
+            Hero(
+              // ignore: unnecessary_string_interpolations
+              tag: '${_category.slug}',
+              child: Material(
+                child: Ink.image(
+                  image: NetworkImage(_category.coverUrl),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.bottomLeft,
