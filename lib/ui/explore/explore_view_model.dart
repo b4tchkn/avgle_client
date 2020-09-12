@@ -28,9 +28,6 @@ class ExploreViewModel extends ChangeNotifier {
   final VideoRepository _videoRepository;
   final FirebaseVideoRepository _firebaseVideoRepository;
 
-  var _count = 0;
-  int get count => _count;
-
   CategoryRes _categoryRes;
   CategoryRes get categoryRes => _categoryRes;
 
@@ -40,15 +37,13 @@ class ExploreViewModel extends ChangeNotifier {
   final List<Video> _topJAVs = [];
   List<Video> get topJAVs => _topJAVs;
 
+  bool _isTopJAVsHasMore = false;
+  bool get isTopJAVsHasMore => _isTopJAVsHasMore;
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   int _pageCount = -1;
-
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
 
   Future<CategoryRes> fetchCategories() {
     _isLoading = true;
@@ -62,11 +57,12 @@ class ExploreViewModel extends ChangeNotifier {
     });
   }
 
-  Future<VideoRes> fetchExploreTopJAVs() {
+  Future<VideoRes> fetchTopJAVs() {
     _pageCount++;
     return _videoRepository
         .fetchSearchedVideos('JAV', _pageCount.toString())
         .then((value) {
+      _isTopJAVsHasMore = value.response.hasMore;
       _topJAVs.addAll(value.response.videos);
       notifyListeners();
     }).catchError((dynamic error) {
@@ -78,7 +74,7 @@ class ExploreViewModel extends ChangeNotifier {
     _pageCount = -1;
     _topJAVs.clear();
     notifyListeners();
-    return fetchExploreTopJAVs();
+    return fetchTopJAVs();
   }
 
   Future<void> addVideoInWatchLater(Video video) {

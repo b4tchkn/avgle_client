@@ -8,10 +8,19 @@ class AppNotifierProvider extends ChangeNotifier {
   AppNotifierProvider(ProviderReference ref);
   int currentIndex = 0;
   ScrollController homeListScrollController = ScrollController();
+  ScrollController exploreListScrollController = ScrollController();
 
   void onTapped(int index) {
     if (currentIndex == index && index == 0) {
       homeListScrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+      notifyListeners();
+    }
+    if (currentIndex == index && index == 1) {
+      exploreListScrollController.animateTo(
         0,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,

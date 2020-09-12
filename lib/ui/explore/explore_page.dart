@@ -1,3 +1,4 @@
+import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/ui/core/video_item.dart';
 import 'package:avgleclient/ui/explore/explore_view_model.dart';
@@ -14,14 +15,23 @@ class ExplorePage extends HookWidget {
     final viewModel = useProvider(exploreViewModelNotifierProvider);
     final fetchCategories = useMemoized(
         () => viewModel.fetchCategories(), [error.peekContent()?.type]);
-    final fetchExploreTopJAVs =
-        useMemoized(() => viewModel.fetchExploreTopJAVs());
+    final fetchTopJAVs = useMemoized(() => viewModel.fetchTopJAVs());
     useFuture(fetchCategories);
-    useFuture(fetchExploreTopJAVs);
+    useFuture(fetchTopJAVs);
+    final appNotifier = useProvider(appNotifierProvider);
+    final scrollController = appNotifier.exploreListScrollController;
     final items = <Widget>[
       ExploreCategoriesCarouselList(viewModel: viewModel),
       const Divider(thickness: 2),
     ];
+
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+              scrollController.position.pixels &&
+          viewModel.isTopJAVsHasMore) {
+        viewModel.fetchTopJAVs();
+      }
+    });
     return Scaffold(
       body: Builder(
         builder: (BuildContext buildContext) {
@@ -37,6 +47,7 @@ class ExplorePage extends HookWidget {
               ? RefreshIndicator(
                   onRefresh: () => viewModel.onRefresh(),
                   child: ListView.builder(
+                      controller: scrollController,
                       itemCount: items.length,
                       itemBuilder: (BuildContext _, int index) {
                         return items[index];
@@ -46,9 +57,6 @@ class ExplorePage extends HookWidget {
                   child: CircularProgressIndicator(),
                 );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => viewModel.increment(),
       ),
     );
   }
