@@ -22,6 +22,13 @@ class ExplorePage extends HookWidget {
     final appNotifier = useProvider(appNotifierProvider);
     final scrollController = appNotifier.exploreListScrollController;
     final items = <Widget>[
+      Container(
+        padding: const EdgeInsets.only(left: 8, top: 8),
+        child: const Text(
+          Strings.exploreTopHeaderCategory,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),
       ExploreCategoriesCarouselList(viewModel: viewModel),
       const Divider(thickness: 2),
       Container(
