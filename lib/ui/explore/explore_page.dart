@@ -1,4 +1,5 @@
 import 'package:avgleclient/error_notifier.dart';
+import 'package:avgleclient/ui/core/video_item.dart';
 import 'package:avgleclient/ui/explore/explore_view_model.dart';
 import 'package:avgleclient/ui/explore/widgets/explore_categories_carousel_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,8 +27,10 @@ class ExplorePage extends HookWidget {
         builder: (BuildContext buildContext) {
           // ignore: avoid_function_literals_in_foreach_calls
           viewModel.topJAVs.forEach((video) {
-            items.add(Container(
-              child: Text(video.title),
+            items.add(VideoItem(
+              viewModel: viewModel,
+              video: video,
+              buildContext: buildContext,
             ));
           });
           return !viewModel.isLoading
