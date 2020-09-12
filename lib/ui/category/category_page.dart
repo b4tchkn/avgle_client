@@ -1,6 +1,8 @@
 import 'package:avgleclient/data/model/category_res.dart';
 import 'package:avgleclient/error_notifier.dart';
+import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/ui/category/category_view_model.dart';
+import 'package:avgleclient/ui/category/widgets/category_top_item.dart';
 import 'package:avgleclient/ui/category/widgets/category_video_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,9 @@ class CategoryPage extends HookWidget {
         () => viewModel.onRefresh(_category.slug), [error.peekContent()?.type]);
     useFuture(fetchCategoryVideos);
     final scrollController = ScrollController();
+    final items = <Widget>[
+      CategoryTopItem(),
+    ];
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
               scrollController.position.pixels &&
@@ -32,18 +37,21 @@ class CategoryPage extends HookWidget {
       ),
       body: Builder(
         builder: (BuildContext buildContext) {
+          viewModel.categoryVideos.forEach((video) {
+            items.add(CategoryVideoListTile(
+              viewModel: viewModel,
+              video: video,
+              buildContext: buildContext,
+            ));
+          });
           return !viewModel.isLoading
               ? RefreshIndicator(
                   onRefresh: () => viewModel.onRefresh(_category.slug),
                   child: ListView.builder(
                       controller: scrollController,
-                      itemCount: viewModel.categoryVideos.length,
+                      itemCount: items.length,
                       itemBuilder: (BuildContext _, int index) {
-                        return CategoryVideoListTile(
-                          viewModel: viewModel,
-                          video: viewModel.categoryVideos[index],
-                          buildContext: buildContext,
-                        );
+                        return items[index];
                       }),
                 )
               : const Center(
