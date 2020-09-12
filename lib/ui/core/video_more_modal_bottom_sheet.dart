@@ -86,7 +86,43 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           leading: const Icon(Icons.video_library),
           title: const Text(Strings.homeModalBottomSheetSavePlayList),
           onTap: () {
-            // TODO プレイリストに保存するためのダイアログ表示
+            Navigator.pop(context);
+            final playListTile = <Widget>[
+              Container(
+                child: const Text(
+                  Strings.corePlayListDialogTitle,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                padding: const EdgeInsets.all(16),
+              ),
+              const Divider(),
+              const ListTile(
+                title: Text('朝のプレイリスト'),
+              ),
+              const ListTile(
+                title: Text('夜のプレイリスト'),
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.add),
+                title: const Text(Strings.corePlayListDialogNewPlayList),
+                onTap: () {
+                  // TODO 新しいプレイリストを作るダイアログ表示
+                },
+              )
+            ];
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(
+                    child: Wrap(
+                  children: playListTile,
+                ));
+              },
+            );
           },
         )
       ],

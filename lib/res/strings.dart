@@ -3,6 +3,10 @@ class Strings {
   static const bottomNavItemExploreTitle = '探索';
   static const bottomNavItemLibraryTitle = 'ライブラリ';
 
+  // For Core
+  static const corePlayListDialogTitle = 'プレイリストに追加';
+  static const corePlayListDialogNewPlayList = '新しいプレイリスト';
+
   // For Home
   static const homeModalBottomSheetSaveWatchLater = '後で見るに保存';
   static const homeSaveWatchLaterSuccess = '[後で見る]に保存しました';
