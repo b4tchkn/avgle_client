@@ -1,5 +1,6 @@
 import 'package:avgleclient/app_notifier.dart';
 import 'package:avgleclient/error_notifier.dart';
+import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/video_item.dart';
 import 'package:avgleclient/ui/explore/explore_view_model.dart';
 import 'package:avgleclient/ui/explore/widgets/explore_categories_carousel_list.dart';
@@ -23,6 +24,16 @@ class ExplorePage extends HookWidget {
     final items = <Widget>[
       ExploreCategoriesCarouselList(viewModel: viewModel),
       const Divider(thickness: 2),
+      Container(
+        padding: const EdgeInsets.only(left: 8, bottom: 8),
+        child: const Text(
+          Strings.exploreTopHeaderJAV,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     ];
 
     scrollController.addListener(() {

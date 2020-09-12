@@ -43,4 +43,5 @@ class Strings {
 
   // For Explore
   static String exploreCategoryVideoCount(int videoCount) => '${videoCount}本';
+  static const String exploreTopHeaderJAV = 'JAV・日本AV';
 }
