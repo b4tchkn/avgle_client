@@ -11,13 +11,16 @@ class VideoItem extends StatelessWidget {
   const VideoItem(
       {@required dynamic viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final dynamic _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
 
   @override
@@ -147,6 +150,7 @@ class VideoItem extends StatelessWidget {
         return VideoMoreModalBottomSheet(
           viewModel: _viewModel,
           video: _video,
+          playlists: _playlists,
           buildContext: buildContext,
         );
       },

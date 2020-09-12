@@ -10,13 +10,16 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
   const VideoMoreModalBottomSheet(
       {@required dynamic viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final dynamic _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -87,7 +90,7 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.homeModalBottomSheetSavePlayList),
           onTap: () {
             Navigator.pop(context);
-            final playListTile = <Widget>[
+            final dialogContents = <Widget>[
               Container(
                 child: const Text(
                   Strings.corePlayListDialogTitle,
@@ -99,27 +102,30 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
               ),
               const Divider(),
-              const ListTile(
-                title: Text('朝のプレイリスト'),
-              ),
-              const ListTile(
-                title: Text('夜のプレイリスト'),
-              ),
-              const Divider(),
-              ListTile(
-                leading: const Icon(Icons.add),
-                title: const Text(Strings.corePlayListDialogNewPlayList),
-                onTap: () {
-                  // TODO 新しいプレイリストを作るダイアログ表示
-                },
-              )
             ];
+            // ignore: avoid_function_literals_in_foreach_calls
+            _playlists.forEach((playlist) {
+              dialogContents.add(ListTile(
+                title: Text(playlist),
+                onTap: () {
+                  // TODO 動画をプレイリストに追加する処理
+                },
+              ));
+            });
+            dialogContents.add(const Divider());
+            dialogContents.add(ListTile(
+              leading: const Icon(Icons.add),
+              title: const Text(Strings.corePlayListDialogNewPlayList),
+              onTap: () {
+                // TODO 新しいプレイリストを作るダイアログ表示
+              },
+            ));
             showDialog(
               context: context,
               builder: (BuildContext context) {
                 return Dialog(
                     child: Wrap(
-                  children: playListTile,
+                  children: dialogContents,
                 ));
               },
             );

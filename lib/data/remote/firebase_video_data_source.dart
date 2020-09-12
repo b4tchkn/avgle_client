@@ -74,4 +74,18 @@ class FirebaseVideoDataSource {
     });
     return newVideos;
   }
+
+  Future<List<String>> fetchPlaylists() async {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist');
+    final res = await userDataRef.get();
+    final playlists = <String>[];
+    // ignore: avoid_function_literals_in_foreach_calls
+    res.docs.forEach((playlist) {
+      playlists.add(playlist.id);
+    });
+    return playlists;
+  }
 }

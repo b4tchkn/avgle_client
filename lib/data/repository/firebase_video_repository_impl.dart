@@ -32,4 +32,9 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<List<Video>> fetchHistoryVideos() {
     return _dataSource.fetchHistoryVideos();
   }
+
+  @override
+  Future<List<String>> fetchPlaylists() {
+    return _dataSource.fetchPlaylists();
+  }
 }

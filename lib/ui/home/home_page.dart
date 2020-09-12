@@ -12,9 +12,12 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final error = useProvider(errorNotifierProvider);
     final viewModel = useProvider(homeViewModelNotifierProvider);
-    final getVideos =
-        useMemoized(() => viewModel.getVideos(), [error.peekContent()?.type]);
-    useFuture(getVideos);
+    final fetchVideos =
+        useMemoized(() => viewModel.fetchVideos(), [error.peekContent()?.type]);
+    useFuture(fetchVideos);
+    final fetchPlaylists = useMemoized(
+        () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
+    useFuture(fetchPlaylists);
     final appNotifier = useProvider(appNotifierProvider);
     final scrollController = appNotifier.homeListScrollController;
     if (!error.hasBeenHandled) {}
@@ -23,7 +26,7 @@ class HomePage extends HookWidget {
       if (scrollController.position.maxScrollExtent ==
               scrollController.position.pixels &&
           viewModel.videoRes.response.hasMore) {
-        viewModel.getVideos();
+        viewModel.fetchVideos();
       }
     });
     return Scaffold(
@@ -40,6 +43,7 @@ class HomePage extends HookWidget {
                           return VideoItem(
                             viewModel: viewModel,
                             video: viewModel.videos[index],
+                            playlists: viewModel.playLists,
                             buildContext: buildContext,
                           );
                         }),

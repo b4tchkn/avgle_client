@@ -27,12 +27,15 @@ class HomeViewModel extends ChangeNotifier {
   final List<Video> _videos = [];
   List<Video> get videos => _videos;
 
+  final List<String> _playlists = [];
+  List<String> get playLists => _playlists;
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   int _pageCount = -1;
 
-  Future<VideoRes> getVideos() async {
+  Future<VideoRes> fetchVideos() async {
     _pageCount++;
     _isLoading = true;
     return _videoRepository.fetchVideos(_pageCount.toString()).then((value) {
@@ -49,7 +52,7 @@ class HomeViewModel extends ChangeNotifier {
     _pageCount = -1;
     _videos.clear();
     notifyListeners();
-    return getVideos();
+    return fetchVideos();
   }
 
   Future<void> addVideoInWatchLater(Video video) {
@@ -58,5 +61,12 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> addVideoInHistory(Video video) {
     return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.addAll(value);
+      notifyListeners();
+    });
   }
 }
