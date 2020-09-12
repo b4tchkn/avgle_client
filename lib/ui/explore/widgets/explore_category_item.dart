@@ -1,6 +1,7 @@
 import 'package:avgleclient/data/model/category_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/category/category_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,14 @@ class ExploreCategoryItem extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => CategoryPage(
+                        categoryName: _category.name,
+                      )));
+        },
         child: Stack(
           children: [
             Ink.image(
