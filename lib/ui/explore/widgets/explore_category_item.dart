@@ -30,8 +30,7 @@ class ExploreCategoryItem extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (_) => CategoryPage(
-                        categoryName: _category.shortname,
-                        slug: _category.slug,
+                        category: _category,
                       )));
         },
         child: Stack(
