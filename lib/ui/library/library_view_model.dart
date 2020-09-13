@@ -21,6 +21,9 @@ class LibraryViewModel extends ChangeNotifier {
   final UserRepository _userRepository;
   final FirebaseVideoRepository _firebaseVideoRepository;
 
+  final List<String> _playlists = [];
+  List<String> get playlists => _playlists;
+
   Future<void> signIn() {
     return _userRepository.signIn();
   }
@@ -31,5 +34,15 @@ class LibraryViewModel extends ChangeNotifier {
 
   Future<void> addVideoInWatchLater(Video video) {
     return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
+      _playlists.addAll(value);
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
+    });
   }
 }
