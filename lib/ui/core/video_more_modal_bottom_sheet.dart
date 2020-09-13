@@ -103,28 +103,28 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
               ),
               const Divider(),
             ];
-            // ignore: avoid_function_literals_in_foreach_calls
-            _playlists.forEach((playlist) {
-              dialogContents.add(
-                ListTile(
-                  title: Text(playlist),
-                  onTap: () {
-                    _viewModel.addVideoInPlaylist(playlist, _video);
-                  },
-                ),
-              );
-            });
-            dialogContents.add(const Divider());
-            dialogContents.add(ListTile(
-              leading: const Icon(Icons.add),
-              title: const Text(Strings.corePlayListDialogNewPlayList),
-              onTap: () {
-                // TODO 新しいプレイリストを作るダイアログ表示
-              },
-            ));
             showDialog(
               context: context,
               builder: (BuildContext context) {
+                // ignore: avoid_function_literals_in_foreach_calls
+                _playlists.forEach((playlist) {
+                  dialogContents.add(ListTile(
+                    title: Text(playlist),
+                    onTap: () {
+                      Navigator.pop(context);
+                      _viewModel.addVideoInPlaylist(playlist, _video);
+                    },
+                  ));
+                });
+                dialogContents.add(const Divider());
+                dialogContents.add(ListTile(
+                  leading: const Icon(Icons.add),
+                  title: const Text(Strings.corePlayListDialogNewPlayList),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // TODO 新しいプレイリストを作るダイアログ表示
+                  },
+                ));
                 return Dialog(
                   child: Wrap(
                     children: dialogContents,
