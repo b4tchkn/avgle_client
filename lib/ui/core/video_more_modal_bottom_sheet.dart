@@ -1,6 +1,7 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/playlist_dialog.dart';
 import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,12 +77,12 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
             _viewModel.addVideoInWatchLater(_video).then((value) {
               // onSuccess
               showSimpleSnackBar(
-                  _buildContext, Strings.homeSaveWatchLaterSuccess);
+                  _buildContext, Strings.coreSaveWatchLaterSuccess);
             }).catchError((error) {
               // onFailure
               debugPrint(error.toString());
               showSimpleSnackBar(
-                  _buildContext, Strings.homeSaveWatchLaterFailure);
+                  _buildContext, Strings.coreSaveWatchLaterFailure);
             });
           },
         ),
@@ -90,45 +91,15 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.homeModalBottomSheetSavePlayList),
           onTap: () {
             Navigator.pop(context);
-            final dialogContents = <Widget>[
-              Container(
-                child: const Text(
-                  Strings.corePlayListDialogTitle,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                padding: const EdgeInsets.all(16),
-              ),
-              const Divider(),
-            ];
             showDialog(
               context: context,
-              builder: (BuildContext context) {
-                // ignore: avoid_function_literals_in_foreach_calls
-                _playlists.forEach((playlist) {
-                  dialogContents.add(ListTile(
-                    title: Text(playlist),
-                    onTap: () {
-                      Navigator.pop(context);
-                      _viewModel.addVideoInPlaylist(playlist, _video);
-                    },
-                  ));
-                });
-                dialogContents.add(const Divider());
-                dialogContents.add(ListTile(
-                  leading: const Icon(Icons.add),
-                  title: const Text(Strings.corePlayListDialogNewPlayList),
-                  onTap: () {
-                    Navigator.pop(context);
-                    // TODO 新しいプレイリストを作るダイアログ表示
-                  },
-                ));
-                return Dialog(
-                  child: Wrap(
-                    children: dialogContents,
-                  ),
+              builder: (BuildContext dialogContext) {
+                return PlaylistDialog(
+                  viewModel: _viewModel,
+                  video: _video,
+                  playlists: _playlists,
+                  buildContext: _buildContext,
+                  dialogContext: dialogContext,
                 );
               },
             );
