@@ -88,4 +88,15 @@ class FirebaseVideoDataSource {
     });
     return playlists;
   }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName)
+        .collection('video')
+        .doc(video.vid);
+    return userDataRef.set(video.toJson());
+  }
 }

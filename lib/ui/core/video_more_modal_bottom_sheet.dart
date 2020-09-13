@@ -105,12 +105,14 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
             ];
             // ignore: avoid_function_literals_in_foreach_calls
             _playlists.forEach((playlist) {
-              dialogContents.add(ListTile(
-                title: Text(playlist),
-                onTap: () {
-                  // TODO 動画をプレイリストに追加する処理
-                },
-              ));
+              dialogContents.add(
+                ListTile(
+                  title: Text(playlist),
+                  onTap: () {
+                    _viewModel.addVideoInPlaylist(playlist, _video);
+                  },
+                ),
+              );
             });
             dialogContents.add(const Divider());
             dialogContents.add(ListTile(
@@ -124,9 +126,10 @@ class VideoMoreModalBottomSheet extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return Dialog(
-                    child: Wrap(
-                  children: dialogContents,
-                ));
+                  child: Wrap(
+                    children: dialogContents,
+                  ),
+                );
               },
             );
           },

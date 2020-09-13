@@ -37,4 +37,9 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<List<String>> fetchPlaylists() {
     return _dataSource.fetchPlaylists();
   }
+
+  @override
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _dataSource.addVideoInPlaylist(playlistName, video);
+  }
 }

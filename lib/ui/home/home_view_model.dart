@@ -65,8 +65,15 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> fetchPlaylists() {
     return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
       _playlists.addAll(value);
       notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
     });
+  }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
   }
 }
