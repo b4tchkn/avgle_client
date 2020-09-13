@@ -12,13 +12,16 @@ class HistoryVideoListTile extends StatelessWidget {
   const HistoryVideoListTile(
       {@required HistoryViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final HistoryViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -95,6 +98,7 @@ class HistoryVideoListTile extends StatelessWidget {
           return HistoryVideoMoreModalBottomSheet(
             viewModel: _viewModel,
             video: _video,
+            playlists: _playlists,
             buildContext: _buildContext,
           );
         });

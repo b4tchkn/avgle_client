@@ -21,6 +21,9 @@ class HistoryViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  final List<String> _playlists = [];
+  List<String> get playlists => _playlists;
+
   TextEditingController searchTextEditingController = TextEditingController();
 
   Future<void> addVideoInHistory(Video video) {
@@ -54,6 +57,16 @@ class HistoryViewModel extends ChangeNotifier {
         _videos.where((video) => video.title.contains(searchText)).toList();
     videos = searchResult;
     notifyListeners();
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
+      _playlists.addAll(value);
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
+    });
   }
 
   @override

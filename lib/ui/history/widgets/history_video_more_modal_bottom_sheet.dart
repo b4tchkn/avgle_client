@@ -1,6 +1,7 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/playlist_dialog.dart';
 import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:avgleclient/ui/history/history_view_model.dart';
 import 'package:avgleclient/util/converters.dart';
@@ -11,13 +12,16 @@ class HistoryVideoMoreModalBottomSheet extends StatelessWidget {
   const HistoryVideoMoreModalBottomSheet(
       {@required HistoryViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final HistoryViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -93,7 +97,17 @@ class HistoryVideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.historyModalBottomSheetSavePlayList),
           onTap: () {
             Navigator.pop(context);
-            // TODO プレイリストに保存するためのダイアログ表示
+            showDialog(
+                context: context,
+                builder: (BuildContext dialogContext) {
+                  return PlaylistDialog(
+                    viewModel: _viewModel,
+                    video: _video,
+                    playlists: _playlists,
+                    buildContext: _buildContext,
+                    dialogContext: dialogContext,
+                  );
+                });
           },
         )
       ],

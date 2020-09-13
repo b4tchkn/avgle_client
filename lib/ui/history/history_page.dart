@@ -15,7 +15,10 @@ class HistoryPage extends HookWidget {
     final viewModel = useProvider(historyViewModelNotifierProvider);
     final fetchHistoryVideos = useMemoized(
         () => viewModel.fetchHistoryVideos(), [error.peekContent()?.type]);
+    final fetchPlaylists = useMemoized(
+        () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
     useFuture(fetchHistoryVideos);
+    useFuture(fetchPlaylists);
     final items = <Widget>[
       HistorySearchBar(
         viewModel: viewModel,
@@ -32,6 +35,7 @@ class HistoryPage extends HookWidget {
             items.add(HistoryVideoListTile(
               viewModel: viewModel,
               video: video,
+              playlists: viewModel.playlists,
               buildContext: buildContext,
             ));
           });
