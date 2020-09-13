@@ -15,7 +15,10 @@ class WatchLaterPage extends HookWidget {
     final viewModel = useProvider(watchLaterViewModelNotifierProvider);
     final fetchWatchLaterVideos = useMemoized(
         () => viewModel.fetchWatchLaterVideos(), [error.peekContent()?.type]);
+    final fetchPlaylists = useMemoized(
+        () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
     useFuture(fetchWatchLaterVideos);
+    useFuture(fetchPlaylists);
     final items = <Widget>[WatchLaterTopItem()];
     return Scaffold(
       appBar: AppBar(
@@ -28,6 +31,7 @@ class WatchLaterPage extends HookWidget {
             items.add(WatchLaterVideoListTile(
               viewModel: viewModel,
               video: video,
+              playlists: viewModel.playlists,
               buildContext: buildContext,
             ));
           });

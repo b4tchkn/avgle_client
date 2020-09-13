@@ -18,6 +18,9 @@ class WatchLaterViewModel extends ChangeNotifier {
   List<Video> _videos = [];
   List<Video> get videos => _videos;
 
+  final List<String> _playlists = [];
+  List<String> get playlists => _playlists;
+
   Future<void> fetchWatchLaterVideos() async {
     _videos = await _firebaseVideoRepository.fetchWatchLaterVideos();
     notifyListeners();
@@ -25,5 +28,19 @@ class WatchLaterViewModel extends ChangeNotifier {
 
   Future<void> addVideoInHistory(Video video) {
     return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
+      _playlists.addAll(value);
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
+    });
+  }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
   }
 }

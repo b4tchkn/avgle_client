@@ -1,6 +1,7 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/playlist_dialog.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,13 +11,16 @@ class WatchLaterVideoMoreModalBottomSheet extends StatelessWidget {
   const WatchLaterVideoMoreModalBottomSheet(
       {@required WatchLaterViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final WatchLaterViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -77,8 +81,18 @@ class WatchLaterVideoMoreModalBottomSheet extends StatelessWidget {
           leading: const Icon(Icons.video_library),
           title: const Text(Strings.watchLaterModalBottomSheetSavePlayList),
           onTap: () {
-            // TODO プレイリストに保存するためのダイアログ表示
             Navigator.pop(context);
+            showDialog(
+                context: context,
+                builder: (BuildContext dialogContext) {
+                  return PlaylistDialog(
+                    viewModel: _viewModel,
+                    video: _video,
+                    playlists: _playlists,
+                    buildContext: _buildContext,
+                    dialogContext: dialogContext,
+                  );
+                });
           },
         )
       ],

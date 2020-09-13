@@ -69,6 +69,10 @@ class HistoryViewModel extends ChangeNotifier {
     });
   }
 
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
+  }
+
   @override
   void dispose() {
     searchTextEditingController.dispose();

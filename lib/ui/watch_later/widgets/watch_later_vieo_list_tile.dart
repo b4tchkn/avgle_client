@@ -10,13 +10,16 @@ class WatchLaterVideoListTile extends StatelessWidget {
   const WatchLaterVideoListTile(
       {@required WatchLaterViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final WatchLaterViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -86,6 +89,7 @@ class WatchLaterVideoListTile extends StatelessWidget {
           return WatchLaterVideoMoreModalBottomSheet(
             viewModel: _viewModel,
             video: _video,
+            playlists: _playlists,
             buildContext: _buildContext,
           );
         });
