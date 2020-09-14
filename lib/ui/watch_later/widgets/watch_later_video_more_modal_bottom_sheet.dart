@@ -2,6 +2,7 @@ import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/playlist_dialog.dart';
+import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_view_model.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,8 +74,14 @@ class WatchLaterVideoMoreModalBottomSheet extends StatelessWidget {
           leading: const Icon(Icons.delete),
           title: const Text(Strings.watchLaterModalBottomSheetDelete),
           onTap: () {
-            // TODO 後で見るから削除するための処理
             Navigator.pop(context);
+            _viewModel.deleteVideoInWatchLater(_video.vid).then((value) {
+              showSimpleSnackBar(_buildContext,
+                  Strings.watchLaterDeleteVideoInWatchLaterSuccess);
+            }).catchError((dynamic error) {
+              showSimpleSnackBar(_buildContext,
+                  Strings.watchLaterDeleteVideoInWatchLaterFailure);
+            });
           },
         ),
         ListTile(

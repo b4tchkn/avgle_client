@@ -113,4 +113,33 @@ class FirebaseVideoDataSource {
     final initialField = {'key': 'value'};
     return userDataRef.set(initialField);
   }
+
+  Future<void> deleteVideoInHistory(String vid) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('history')
+        .doc(vid);
+    return userDataRef.delete();
+  }
+
+  Future<void> deleteVideoInWatchLater(String vid) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('watch_later')
+        .doc(vid);
+    return userDataRef.delete();
+  }
+
+  Future<void> deleteVideoInPlaylist(String vid, String playlistName) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName)
+        .collection('video')
+        .doc(vid);
+    return userDataRef.delete();
+  }
 }

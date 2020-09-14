@@ -35,11 +35,14 @@ class WatchLaterPage extends HookWidget {
               buildContext: buildContext,
             ));
           });
-          return ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              return items[index];
-            },
+          return RefreshIndicator(
+            onRefresh: () => viewModel.fetchWatchLaterVideos(),
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return items[index];
+              },
+            ),
           );
         },
       ),

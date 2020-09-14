@@ -48,4 +48,8 @@ class WatchLaterViewModel extends ChangeNotifier {
     await _firebaseVideoRepository.createPlaylist(playlistName);
     return addVideoInPlaylist(playlistName, video);
   }
+
+  Future<void> deleteVideoInWatchLater(String vid) {
+    return _firebaseVideoRepository.deleteVideoInWatchLater(vid);
+  }
 }

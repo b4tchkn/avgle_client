@@ -47,4 +47,19 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<void> createPlaylist(String playlistName) {
     return _dataSource.createPlaylist(playlistName);
   }
+
+  @override
+  Future<void> deleteVideoInHistory(String vid) {
+    return _dataSource.deleteVideoInHistory(vid);
+  }
+
+  @override
+  Future<void> deleteVideoInPlaylist(String vid, String playlistName) {
+    return _dataSource.deleteVideoInPlaylist(vid, playlistName);
+  }
+
+  @override
+  Future<void> deleteVideoInWatchLater(String vid) {
+    return _dataSource.deleteVideoInWatchLater(vid);
+  }
 }

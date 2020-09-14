@@ -41,6 +41,8 @@ class Strings {
       '${displayName}の\n後で見る';
   static const watchLaterModalBottomSheetDelete = '[後で見る]から削除';
   static const watchLaterModalBottomSheetSavePlayList = '再生リストに保存';
+  static const watchLaterDeleteVideoInWatchLaterSuccess = '削除しました';
+  static const watchLaterDeleteVideoInWatchLaterFailure = '削除に失敗しました';
 
   // For History
   static const historyAppBarTitle = '履歴';
