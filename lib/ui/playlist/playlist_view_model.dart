@@ -31,4 +31,12 @@ class PlaylistViewModel extends ChangeNotifier {
   Future<void> deleteVideoInPlaylist(String vid, String playlistName) {
     return _firebaseVideoRepository.deleteVideoInPlaylist(vid, playlistName);
   }
+
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
+  Future<void> addVideoInWatchLater(Video video) {
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
 }

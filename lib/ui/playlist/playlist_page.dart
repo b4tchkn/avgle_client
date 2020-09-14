@@ -1,6 +1,7 @@
 import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/ui/playlist/playlist_view_model.dart';
 import 'package:avgleclient/ui/playlist/widgets/playlist_top_item.dart';
+import 'package:avgleclient/ui/playlist/widgets/playlist_video_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -35,7 +36,12 @@ class PlaylistPage extends HookWidget {
         builder: (BuildContext buildContext) {
           // ignore: avoid_function_literals_in_foreach_calls
           viewModel.videos.forEach((video) {
-            items.add(Text(video.title));
+            items.add(PlaylistVideoListTile(
+              viewModel: viewModel,
+              video: video,
+              playlistName: _playlistName,
+              buildContext: buildContext,
+            ));
           });
 
           return RefreshIndicator(

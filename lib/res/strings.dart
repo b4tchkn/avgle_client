@@ -65,4 +65,11 @@ class Strings {
   static String categoryVideoCount(int videoCount) => '${videoCount}本の動画';
 
   // For Playlist
+  static const playlistModalBottomSheetSaveWatchLater = '[後で見る]に保存';
+  static String playlistModalBottomSheetDeletePlaylist(String playlistName) =>
+      '[$playlistName]から削除';
+  static const playlistDeleteVideoInPlaylistSuccess = '削除しました';
+  static const playlistDeleteVideoInPlaylistFailure = '削除に失敗しました';
+  static const playlistSaveWatchLaterSuccess = '[後で見る]に保存しました';
+  static const playlistSaveWatchLaterFailure = '保存できませんでした';
 }
