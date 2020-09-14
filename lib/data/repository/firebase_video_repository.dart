@@ -7,6 +7,7 @@ abstract class FirebaseVideoRepository {
   Future<List<Video>> fetchWatchLaterVideos();
   Future<List<Video>> fetchHistoryVideos();
   Future<List<String>> fetchPlaylists();
+  Future<List<Video>> fetchPlaylistVideos(String playlistName);
   Future<void> addVideoInPlaylist(String playlistName, Video video);
   Future<void> createPlaylist(String playlistName);
   Future<void> deleteVideoInHistory(String vid);

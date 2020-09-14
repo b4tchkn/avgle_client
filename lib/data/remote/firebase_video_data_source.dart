@@ -75,6 +75,22 @@ class FirebaseVideoDataSource {
     return newVideos;
   }
 
+  Future<List<Video>> fetchPlaylistVideos(String playlistName) async {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName)
+        .collection('video');
+    final res = await userDataRef.get();
+    final newVideos = <Video>[];
+    // ignore: avoid_function_literals_in_foreach_calls
+    res.docs.forEach((video) {
+      newVideos.add(Video.fromJson(video.data()));
+    });
+    return newVideos;
+  }
+
   Future<List<String>> fetchPlaylists() async {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
