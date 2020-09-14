@@ -12,13 +12,16 @@ class CategoryVideoListTile extends StatelessWidget {
   const CategoryVideoListTile(
       {@required CategoryViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final CategoryViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -109,6 +112,7 @@ class CategoryVideoListTile extends StatelessWidget {
           return VideoMoreModalBottomSheet(
             viewModel: _viewModel,
             video: _video,
+            playlists: _playlists,
             buildContext: _buildContext,
           );
         });

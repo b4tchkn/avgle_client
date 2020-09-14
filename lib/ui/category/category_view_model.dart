@@ -32,6 +32,9 @@ class CategoryViewModel extends ChangeNotifier {
   final List<Video> _categoryVideos = [];
   List<Video> get categoryVideos => _categoryVideos;
 
+  final List<String> _playlists = [];
+  List<String> get playlists => _playlists;
+
   int _pageCount = -1;
 
   Future<VideoRes> fetchCategoryVideos(String categoryName) {
@@ -63,5 +66,19 @@ class CategoryViewModel extends ChangeNotifier {
 
   Future<void> addVideoInWatchLater(Video video) {
     return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
+      _playlists.addAll(value);
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
+    });
+  }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
   }
 }

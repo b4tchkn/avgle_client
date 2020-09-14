@@ -18,7 +18,10 @@ class CategoryPage extends HookWidget {
     final viewModel = useProvider(categoryViewModelNotifierProvider);
     final fetchCategoryVideos = useMemoized(
         () => viewModel.onRefresh(_category.slug), [error.peekContent()?.type]);
+    final fetchPlaylists = useMemoized(
+        () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
     useFuture(fetchCategoryVideos);
+    useFuture(fetchPlaylists);
     final scrollController = ScrollController();
     final items = <Widget>[
       CategoryTopItem(
@@ -50,6 +53,7 @@ class CategoryPage extends HookWidget {
               items.add(CategoryVideoListTile(
                 viewModel: viewModel,
                 video: video,
+                playlists: viewModel.playlists,
                 buildContext: buildContext,
               ));
             });
