@@ -43,4 +43,9 @@ class WatchLaterViewModel extends ChangeNotifier {
   Future<void> addVideoInPlaylist(String playlistName, Video video) {
     return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
   }
+
+  Future<void> createPlaylist(String playlistName, Video video) async {
+    await _firebaseVideoRepository.createPlaylist(playlistName);
+    return addVideoInPlaylist(playlistName, video);
+  }
 }
