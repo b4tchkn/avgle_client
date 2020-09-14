@@ -76,11 +76,13 @@ class FirebaseVideoDataSource {
   }
 
   Future<List<String>> fetchPlaylists() async {
+    debugPrint('いああああああ');
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
         .doc('data')
         .collection('playlist');
     final res = await userDataRef.get();
+
     final playlists = <String>[];
     // ignore: avoid_function_literals_in_foreach_calls
     res.docs.forEach((playlist) {
@@ -98,5 +100,18 @@ class FirebaseVideoDataSource {
         .collection('video')
         .doc(video.vid);
     return userDataRef.set(video.toJson());
+  }
+
+  Future<void> createPlaylist(String playlistName) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName);
+
+    // なにかしらFieldに入れないとプレイリストのdocumentを配列で取れないので
+    // プレイリスト作成時に挿入する用
+    final initialField = {'key': 'value'};
+    return userDataRef.set(initialField);
   }
 }

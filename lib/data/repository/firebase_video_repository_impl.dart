@@ -42,4 +42,9 @@ class FirebaseVideoRepositoryImpl implements FirebaseVideoRepository {
   Future<void> addVideoInPlaylist(String playlistName, Video video) {
     return _dataSource.addVideoInPlaylist(playlistName, video);
   }
+
+  @override
+  Future<void> createPlaylist(String playlistName) {
+    return _dataSource.createPlaylist(playlistName);
+  }
 }

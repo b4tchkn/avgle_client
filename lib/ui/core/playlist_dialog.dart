@@ -1,5 +1,6 @@
 import 'package:avgleclient/data/model/video_res.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/core/create_playlist_dialog.dart';
 import 'package:avgleclient/ui/core/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,10 +60,18 @@ class PlaylistDialog extends StatelessWidget {
       title: const Text(Strings.corePlayListDialogNewPlayList),
       onTap: () {
         Navigator.pop(_dialogContext);
-        // TODO 新しいプレイリストを作るダイアログ表示
+        showDialog(
+            context: context,
+            builder: (BuildContext dialogContext) {
+              return CreatePlaylistDialog(
+                dialogContext: dialogContext,
+                video: _video,
+                viewModel: _viewModel,
+                buildContext: _buildContext,
+              );
+            });
       },
     ));
-
     return Dialog(
       child: Wrap(
         children: dialogContents,

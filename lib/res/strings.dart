@@ -10,6 +10,10 @@ class Strings {
   static const coreSaveWatchLaterFailure = '保存できませんでした';
   static const coreSavePlaylistSuccess = 'プレイリストに保存しました';
   static const coreSavePlaylistFailure = '保存できませんでした';
+  static const coreCreateNewPlaylistDialogTitle = '新しいプレイリストの作成';
+  static const coreCreateNewPlaylistDialogPlaylistTitle = 'タイトル';
+  static const coreCreateNewPlaylistDialogCreate = '作成';
+  static const coreCreateNewPlaylistDialogCancel = 'キャンセル';
 
   // For Home
   static const homeModalBottomSheetSaveWatchLater = '後で見るに保存';
