@@ -63,4 +63,6 @@ class Strings {
 
   // For Category
   static String categoryVideoCount(int videoCount) => '${videoCount}本の動画';
+
+  // For Playlist
 }

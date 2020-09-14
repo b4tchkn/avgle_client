@@ -7,6 +7,7 @@ import 'package:avgleclient/ui/history/history_page.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
 import 'package:avgleclient/ui/library/widgets/library_create_playlist_dialog.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
+import 'package:avgleclient/ui/playlist/playlist_page.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,14 @@ class LibraryPageSignedIn extends HookWidget {
               ListTile(
                 title: Text(playlist),
                 onTap: () {
-                  // TODO 再生リスト一覧画面へ遷移
+                  Navigator.push<Widget>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlaylistPage(
+                        playlistName: playlist,
+                      ),
+                    ),
+                  );
                 },
               ),
             );
