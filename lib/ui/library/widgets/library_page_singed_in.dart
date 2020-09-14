@@ -67,17 +67,6 @@ class LibraryPageSignedIn extends HookWidget {
               ),
             ),
           ];
-          // ignore: avoid_function_literals_in_foreach_calls
-          viewModel.playlists.forEach((playlist) {
-            pageContents.add(
-              ListTile(
-                title: Text(playlist),
-                onTap: () {
-                  // TODO 再生リスト一覧画面へ遷移
-                },
-              ),
-            );
-          });
           pageContents.add(ListTile(
             leading: const Icon(
               Icons.add,
@@ -102,6 +91,17 @@ class LibraryPageSignedIn extends HookWidget {
                   });
             },
           ));
+          // ignore: avoid_function_literals_in_foreach_calls
+          viewModel.playlists.forEach((playlist) {
+            pageContents.add(
+              ListTile(
+                title: Text(playlist),
+                onTap: () {
+                  // TODO 再生リスト一覧画面へ遷移
+                },
+              ),
+            );
+          });
           return RefreshIndicator(
             onRefresh: () => viewModel.fetchPlaylists(),
             child: SingleChildScrollView(
