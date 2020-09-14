@@ -11,11 +11,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class WatchRecentlyCarouselList extends HookWidget {
   const WatchRecentlyCarouselList(
       {@required LibraryViewModel viewModel,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final LibraryViewModel _viewModel;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class WatchRecentlyCarouselList extends HookWidget {
                           viewModel: _viewModel,
                           video:
                               Video.fromJson(snapshot.data.docs[index].data()),
+                          playlists: _playlists,
                           buildContext: _buildContext,
                         );
                 }),

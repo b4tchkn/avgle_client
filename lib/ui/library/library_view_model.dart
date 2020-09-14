@@ -45,4 +45,8 @@ class LibraryViewModel extends ChangeNotifier {
       debugPrint('fetchPlaylists $error');
     });
   }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
+  }
 }

@@ -17,8 +17,11 @@ class ExplorePage extends HookWidget {
     final fetchCategories = useMemoized(
         () => viewModel.fetchCategories(), [error.peekContent()?.type]);
     final fetchTopJAVs = useMemoized(() => viewModel.fetchTopJAVs());
+    final fetchPlaylists = useMemoized(
+        () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
     useFuture(fetchCategories);
     useFuture(fetchTopJAVs);
+    useFuture(fetchPlaylists);
     final appNotifier = useProvider(appNotifierProvider);
     final scrollController = appNotifier.exploreListScrollController;
     final items = <Widget>[
@@ -58,6 +61,7 @@ class ExplorePage extends HookWidget {
             items.add(VideoItem(
               viewModel: viewModel,
               video: video,
+              playlists: viewModel.playlists,
               buildContext: buildContext,
             ));
           });

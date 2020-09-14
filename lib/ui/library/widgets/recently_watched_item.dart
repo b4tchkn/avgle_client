@@ -10,13 +10,16 @@ class RecentlyWatchedItem extends StatelessWidget {
   const RecentlyWatchedItem(
       {@required LibraryViewModel viewModel,
       @required Video video,
+      @required List<String> playlists,
       @required BuildContext buildContext})
       : _viewModel = viewModel,
         _video = video,
+        _playlists = playlists,
         _buildContext = buildContext;
 
   final LibraryViewModel _viewModel;
   final Video _video;
+  final List<String> _playlists;
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
@@ -90,6 +93,7 @@ class RecentlyWatchedItem extends StatelessWidget {
         return VideoMoreModalBottomSheet(
           viewModel: _viewModel,
           video: _video,
+          playlists: _playlists,
           buildContext: _buildContext,
         );
       },
