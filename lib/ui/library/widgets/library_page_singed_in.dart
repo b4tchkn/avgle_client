@@ -21,7 +21,10 @@ class LibraryPageSignedIn extends HookWidget {
     final viewModel = useProvider(libraryViewModelNotifierProvider);
     final fetchPlaylists = useMemoized(
         () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
+    final fetchUser =
+        useMemoized(() => viewModel.fetchUser(), [error.peekContent()?.type]);
     useFuture(fetchPlaylists);
+    useFuture(fetchUser);
 
     return Scaffold(
       body: Builder(
@@ -103,6 +106,7 @@ class LibraryPageSignedIn extends HookWidget {
                     MaterialPageRoute(
                       builder: (context) => PlaylistPage(
                         playlistName: playlist,
+                        userName: viewModel.user.displayName,
                       ),
                     ),
                   );

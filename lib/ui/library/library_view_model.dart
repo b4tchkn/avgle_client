@@ -3,6 +3,7 @@ import 'package:avgleclient/data/provider/firebase_video_repository_provider.dar
 import 'package:avgleclient/data/provider/user_repository_provider.dart';
 import 'package:avgleclient/data/repository/firebase_video_repository.dart';
 import 'package:avgleclient/data/repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,8 +25,15 @@ class LibraryViewModel extends ChangeNotifier {
   final List<String> _playlists = [];
   List<String> get playlists => _playlists;
 
+  User _user;
+  User get user => _user;
+
   Future<void> signIn() {
     return _userRepository.signIn();
+  }
+
+  Future<void> fetchUser() async {
+    _user = await _userRepository.fetchUser();
   }
 
   Future<void> addVideoInHistory(Video video) {
