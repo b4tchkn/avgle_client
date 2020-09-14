@@ -1,4 +1,5 @@
 import 'package:avgleclient/app_notifier.dart';
+import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/user_icon_button.dart';
