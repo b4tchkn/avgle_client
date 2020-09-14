@@ -2,8 +2,10 @@ import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/res/text_styles.dart';
+import 'package:avgleclient/ui/core/create_playlist_dialog.dart';
 import 'package:avgleclient/ui/history/history_page.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
+import 'package:avgleclient/ui/library/widgets/library_create_playlist_dialog.dart';
 import 'package:avgleclient/ui/library/widgets/watch_recently_carousel_list.dart';
 import 'package:avgleclient/ui/watch_later/watch_later_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -89,14 +91,25 @@ class LibraryPageSignedIn extends HookWidget {
               ),
             ),
             onTap: () {
-              // TODO 履歴一覧に遷移して再生リストに追加する動画を選択できるようにする
+              showDialog(
+                  context: context,
+                  builder: (BuildContext dialogContext) {
+                    return LibraryCreatePlaylistDialog(
+                      viewModel: viewModel,
+                      dialogContext: dialogContext,
+                      buildContext: buildContext,
+                    );
+                  });
             },
           ));
-          return SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: pageContents,
+          return RefreshIndicator(
+            onRefresh: () => viewModel.fetchPlaylists(),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: pageContents,
+              ),
             ),
           );
         },

@@ -33,6 +33,7 @@ class Strings {
   static const libraryNewPlayList = '新しい再生リスト';
   static const libraryPleaseSignIn = 'サインインして\nAvgleをお楽しみください';
   static const librarySignInWithGoogle = 'Googleでサインイン';
+  static const libraryCreatePlaylistSuccess = 'プレイリストを作成しました';
 
   // For WatchLater
   static const watchLaterAppBarTitle = '後で見る';

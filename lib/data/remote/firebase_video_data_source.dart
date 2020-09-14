@@ -76,7 +76,6 @@ class FirebaseVideoDataSource {
   }
 
   Future<List<String>> fetchPlaylists() async {
-    debugPrint('いああああああ');
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
         .doc('data')
