@@ -43,6 +43,8 @@ class Strings {
   static const watchLaterModalBottomSheetSavePlayList = '再生リストに保存';
   static const watchLaterDeleteVideoInWatchLaterSuccess = '削除しました';
   static const watchLaterDeleteVideoInWatchLaterFailure = '削除に失敗しました';
+  static String watchLaterTopItemVideoCount(int videoCount) =>
+      '$videoCount本の動画';
 
   // For History
   static const historyAppBarTitle = '履歴';
@@ -72,4 +74,5 @@ class Strings {
   static const playlistDeleteVideoInPlaylistFailure = '削除に失敗しました';
   static const playlistSaveWatchLaterSuccess = '[後で見る]に保存しました';
   static const playlistSaveWatchLaterFailure = '保存できませんでした';
+  static String playlistVideoCount(int videoCount) => '${videoCount}本の動画';
 }

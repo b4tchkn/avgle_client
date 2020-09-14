@@ -19,7 +19,11 @@ class WatchLaterPage extends HookWidget {
         () => viewModel.fetchPlaylists(), [error.peekContent()?.type]);
     useFuture(fetchWatchLaterVideos);
     useFuture(fetchPlaylists);
-    final items = <Widget>[WatchLaterTopItem()];
+    final items = <Widget>[
+      WatchLaterTopItem(
+        videoCount: viewModel.videos.length,
+      )
+    ];
     return Scaffold(
       appBar: AppBar(
         title: const Text(Strings.watchLaterAppBarTitle),

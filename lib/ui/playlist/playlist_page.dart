@@ -26,6 +26,7 @@ class PlaylistPage extends HookWidget {
       PlaylistTopItem(
         playlistName: _playlistName,
         userName: _userName,
+        videoCount: viewModel.videos.length,
       )
     ];
     return Scaffold(
