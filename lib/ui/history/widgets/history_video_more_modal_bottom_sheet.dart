@@ -75,7 +75,13 @@ class HistoryVideoMoreModalBottomSheet extends StatelessWidget {
           title: const Text(Strings.historyModalBottomSheetDelete),
           onTap: () {
             Navigator.pop(context);
-            // TODO 再生履歴から削除するための処理
+            _viewModel.deleteVideoInHistory(_video.vid).then((value) {
+              showSimpleSnackBar(
+                  _buildContext, Strings.historyDeleteVideoInHistorySuccess);
+            }).catchError((dynamic error) {
+              showSimpleSnackBar(_buildContext,
+                  Strings.historyLaterDeleteVideoInHistoryFailure);
+            });
           },
         ),
         ListTile(

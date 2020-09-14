@@ -78,6 +78,10 @@ class HistoryViewModel extends ChangeNotifier {
     return addVideoInPlaylist(playlistName, video);
   }
 
+  Future<void> deleteVideoInHistory(String vid) {
+    return _firebaseVideoRepository.deleteVideoInHistory(vid);
+  }
+
   @override
   void dispose() {
     searchTextEditingController.dispose();
