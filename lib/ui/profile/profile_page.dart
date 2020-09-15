@@ -40,7 +40,11 @@ class ProfilePage extends HookWidget {
               ListTile(
                 title: const Text(Strings.profileLicense),
                 onTap: () {
-                  // TODO ライセンス画面へ遷移
+                  showLicensePage(
+                      context: context,
+                      applicationName: 'Avgle',
+                      applicationVersion: Strings.appVersion,
+                      applicationLegalese: 'developed by batch(@b4tchkn).');
                 },
               ),
               ListTile(
