@@ -58,7 +58,12 @@ class LibraryViewModel extends ChangeNotifier {
     return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
   }
 
-  Future<void> createPlaylist(String playlistName) {
+  Future<void> createPlaylist(String playlistName, Video video) async {
+    await _firebaseVideoRepository.createPlaylist(playlistName);
+    return addVideoInPlaylist(playlistName, video);
+  }
+
+  Future<void> createPlaylistOnly(String playlistName) {
     return _firebaseVideoRepository.createPlaylist(playlistName);
   }
 }

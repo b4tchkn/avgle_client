@@ -39,7 +39,7 @@ class LibraryCreatePlaylistDialog extends StatelessWidget {
           child: const Text(Strings.coreCreateNewPlaylistDialogCreate),
           onPressed: () {
             Navigator.pop(_dialogContext);
-            _viewModel.createPlaylist(textController.text).then((value) {
+            _viewModel.createPlaylistOnly(textController.text).then((value) {
               showSimpleSnackBar(
                   _buildContext, Strings.libraryCreatePlaylistSuccess);
             });
