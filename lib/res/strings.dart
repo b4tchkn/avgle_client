@@ -92,6 +92,9 @@ class Strings {
   static String searchVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
   static String searchVideoNoResults(String searchKeyword) =>
       '「$searchKeyword」に該当する結果はありません。\n他の検索ワードでお試しください。';
+  static const searchDeleteSearchHistoryDialogTitle = '検索履歴から削除しますか？';
+  static const searchDeleteSearchHistoryDialogDelete = '削除';
+  static const searchDeleteSearchHistoryDialogCancel = 'キャンセル';
 
   // For EditPlaylist
   static const editPlaylistAppBarTitle = '再生リストの編集';

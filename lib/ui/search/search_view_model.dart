@@ -55,6 +55,7 @@ class SearchViewModel extends ChangeNotifier {
     final db = await database;
     await db.insert('history', history.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+    await getSearchHistories(database);
   }
 
   Future<void> getSearchHistories(Future<Database> database) async {
@@ -71,6 +72,7 @@ class SearchViewModel extends ChangeNotifier {
   Future<void> deleteSearchHistories(Future<Database> database, int id) async {
     final db = await database;
     await db.delete('history', where: 'id = ?', whereArgs: [id]);
+    await getSearchHistories(database);
   }
 
   Future<void> searchVideos(String searchWord) async {

@@ -16,14 +16,16 @@ class SearchResultList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _viewModel.searchedVideos.isNotEmpty
-        ? ListView.builder(itemBuilder: (BuildContext _, int index) {
-            return SearchedVideoListTile(
-              viewModel: _viewModel,
-              video: _viewModel.searchedVideos[index],
-              playlists: _viewModel.playlists,
-              buildContext: _buildContext,
-            );
-          })
+        ? ListView.builder(
+            itemCount: _viewModel.searchedVideos.length,
+            itemBuilder: (BuildContext _, int index) {
+              return SearchedVideoListTile(
+                viewModel: _viewModel,
+                video: _viewModel.searchedVideos[index],
+                playlists: _viewModel.playlists,
+                buildContext: _buildContext,
+              );
+            })
         : Center(
             child: Container(
               width: 240,

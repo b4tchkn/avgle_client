@@ -40,7 +40,10 @@ class SearchPage extends HookWidget {
         body: Builder(
           builder: (BuildContext buildContext) {
             return !viewModel.isSearched
-                ? HistoryList(viewModel: viewModel)
+                ? HistoryList(
+                    viewModel: viewModel,
+                    database: _database,
+                  )
                 : !viewModel.isLoading
                     ? SearchResultList(
                         viewModel: viewModel,
