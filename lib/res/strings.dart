@@ -85,4 +85,6 @@ class Strings {
   // For Search
   static const searchHint = 'Avgleを検索';
   static String searchVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
+  static String searchVideoNoResults(String searchKeyword) =>
+      '「$searchKeyword」に該当する結果はありません。\n他の検索ワードでお試しください。';
 }
