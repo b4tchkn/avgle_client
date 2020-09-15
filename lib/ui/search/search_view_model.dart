@@ -34,12 +34,8 @@ class SearchViewModel extends ChangeNotifier {
   }
 
   Future<void> getSearchHistories() async {
-    debugPrint('のなかあああああああああああああああああああああああああああああ');
     final db = await database;
     final maps = await db.query('history');
-    debugPrint('yahooo $maps');
-    debugPrint('hai?');
-
     _histories = List.generate(maps.length, (index) {
       return History(
           id: int.parse(maps[index]['id'].toString()),
