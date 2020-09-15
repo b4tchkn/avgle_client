@@ -6,6 +6,8 @@ import 'package:avgleclient/ui/core/user_icon_button.dart';
 import 'package:avgleclient/ui/explore/explore_page.dart';
 import 'package:avgleclient/ui/home/home_page.dart';
 import 'package:avgleclient/ui/library/library_page.dart';
+import 'package:avgleclient/ui/profile/profile_page.dart';
+import 'package:avgleclient/ui/search/search_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -37,29 +39,39 @@ class App extends HookWidget {
         primaryColor: AppColors.grey,
       ),
       darkTheme: ThemeData.dark(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            'assets/images/logo.png',
-            height: 40,
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
+      home: Builder(
+        builder: (BuildContext context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Image.asset(
+                'assets/images/logo.png',
+                height: 40,
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    Navigator.push<Widget>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => SearchPage(),
+                        ));
+                  },
+                ),
+                UserIconButton(),
+              ],
             ),
-            UserIconButton(),
-          ],
-        ),
-        body: _pages[appNotifier.currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.white,
-          unselectedItemColor: AppColors.lightGrey,
-          onTap: (index) => appNotifier.onTapped(index),
-          currentIndex: appNotifier.currentIndex,
-          type: BottomNavigationBarType.fixed,
-          items: bottomNavItems,
-        ),
+            body: _pages[appNotifier.currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              fixedColor: Colors.white,
+              unselectedItemColor: AppColors.lightGrey,
+              onTap: (index) => appNotifier.onTapped(index),
+              currentIndex: appNotifier.currentIndex,
+              type: BottomNavigationBarType.fixed,
+              items: bottomNavItems,
+            ),
+          );
+        },
       ),
     );
   }
