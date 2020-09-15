@@ -43,20 +43,20 @@ class PlaylistTopItem extends StatelessWidget {
                   style: const TextStyle(fontSize: 14),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 16, top: 16),
-                child: IconButton(
-                  icon: const Icon(Icons.edit),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => EditPlaylistPage(
-                                  playlistName: _playlistName,
-                                )));
-                  },
-                ),
-              ),
+              // Container(
+              //   padding: const EdgeInsets.only(left: 16, top: 16),
+              //   child: IconButton(
+              //     icon: const Icon(Icons.edit),
+              //     onPressed: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (_) => EditPlaylistPage(
+              //                     playlistName: _playlistName,
+              //                   )));
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),
