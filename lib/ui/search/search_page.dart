@@ -1,6 +1,7 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/search/search_view_model.dart';
+import 'package:avgleclient/ui/search/widgets/searched_video_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -17,7 +18,9 @@ class SearchPage extends HookWidget {
     final viewModel = useProvider(searchViewModelNotifierProvider);
     final getSearchHistories =
         useMemoized(() => viewModel.getSearchHistories(_database));
+    final fetchPlaylists = useMemoized(() => viewModel.fetchPlaylists());
     useFuture(getSearchHistories);
+    useFuture(fetchPlaylists);
     return WillPopScope(
       onWillPop: () {
         Navigator.pop(context);
@@ -65,11 +68,16 @@ class SearchPage extends HookWidget {
                         },
                       );
                     })
-                : Container(
-                    child: const Center(
-                      child: Text('検索結果'),
-                    ),
-                  );
+                : ListView.builder(
+                    itemCount: viewModel.searchedVideos.length,
+                    itemBuilder: (BuildContext _, int index) {
+                      return SearchedVideoListTile(
+                        viewModel: viewModel,
+                        video: viewModel.searchedVideos[index],
+                        playlists: viewModel.playlists,
+                        buildContext: buildContext,
+                      );
+                    });
           },
         ),
       ),

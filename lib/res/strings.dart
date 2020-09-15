@@ -84,4 +84,5 @@ class Strings {
 
   // For Search
   static const searchHint = 'Avgleを検索';
+  static String searchVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
 }

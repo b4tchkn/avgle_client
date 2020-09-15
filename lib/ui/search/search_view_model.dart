@@ -24,8 +24,11 @@ class SearchViewModel extends ChangeNotifier {
   final FirebaseVideoRepository _firebaseVideoRepository;
   final VideoRepository _videoRepository;
 
-  List<Video> _searchedVidesos = [];
-  List<Video> get searchedVideos => _searchedVidesos;
+  final List<Video> _searchedVideos = [];
+  List<Video> get searchedVideos => _searchedVideos;
+
+  final List<String> _playlists = [];
+  List<String> get playlists => _playlists;
 
   List<History> _histories = [];
   List<History> get histories => _histories;
@@ -68,7 +71,7 @@ class SearchViewModel extends ChangeNotifier {
         .fetchSearchedVideos(searchWord, _pageCount.toString())
         .then((value) {
       _isVideoHasMore = value.response.hasMore;
-      _searchedVidesos.addAll(value.response.videos);
+      _searchedVideos.addAll(value.response.videos);
       _isSearched = true;
       notifyListeners();
     }).catchError((dynamic error) {
@@ -82,11 +85,38 @@ class SearchViewModel extends ChangeNotifier {
         .fetchSearchedVideos(searchWord, _pageCount.toString())
         .then((value) {
       _isVideoHasMore = value.response.hasMore;
-      _searchedVidesos.addAll(value.response.videos);
+      _searchedVideos.addAll(value.response.videos);
       notifyListeners();
     }).catchError((dynamic error) {
       debugPrint('fetchSearchVideos $error');
     });
+  }
+
+  Future<void> addVideoInWatchLater(Video video) {
+    return _firebaseVideoRepository.addVideoInWatchLater(video);
+  }
+
+  Future<void> addVideoInHistory(Video video) {
+    return _firebaseVideoRepository.addVideoInHistory(video);
+  }
+
+  Future<void> fetchPlaylists() {
+    return _firebaseVideoRepository.fetchPlaylists().then((value) {
+      _playlists.clear();
+      _playlists.addAll(value);
+      notifyListeners();
+    }).catchError((dynamic error) {
+      debugPrint('fetchPlaylists $error');
+    });
+  }
+
+  Future<void> addVideoInPlaylist(String playlistName, Video video) {
+    return _firebaseVideoRepository.addVideoInPlaylist(playlistName, video);
+  }
+
+  Future<void> createPlaylist(String playlistName, Video video) async {
+    await _firebaseVideoRepository.createPlaylist(playlistName);
+    return addVideoInPlaylist(playlistName, video);
   }
 
   void onWillPop() {
