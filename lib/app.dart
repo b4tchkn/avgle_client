@@ -31,6 +31,8 @@ class App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final appNotifier = useProvider(appNotifierProvider);
+    final init = useMemoized(() => appNotifier.init());
+    useFuture(init);
     return MaterialApp(
       title: 'Avgle',
       theme: ThemeData(
@@ -52,7 +54,9 @@ class App extends HookWidget {
                     Navigator.push<Widget>(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => SearchPage(),
+                          builder: (_) => SearchPage(
+                            database: appNotifier.database,
+                          ),
                         ));
                   },
                 ),

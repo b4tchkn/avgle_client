@@ -5,15 +5,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sqflite/sqflite.dart';
 
 class SearchPage extends HookWidget {
+  const SearchPage({@required Future<Database> database})
+      : _database = database;
+
+  final Future<Database> _database;
   @override
   Widget build(BuildContext context) {
     final viewModel = useProvider(searchViewModelNotifierProvider);
-    final init = useMemoized(() => viewModel.init());
     final getSearchHistories =
-        useMemoized(() => viewModel.getSearchHistories());
-    useFuture(init);
+        useMemoized(() => viewModel.getSearchHistories(_database));
     useFuture(getSearchHistories);
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +33,7 @@ class SearchPage extends HookWidget {
             textInputAction: TextInputAction.search,
             onSubmitted: (String searchWord) {
               // TODO 実際に検索する処理
-              viewModel.addSearchHistory(searchWord);
+              viewModel.addSearchHistory(_database, searchWord);
             },
             decoration: const InputDecoration(
               border: InputBorder.none,
@@ -50,6 +53,8 @@ class SearchPage extends HookWidget {
                   title: Text(viewModel.histories[index].keyword),
                   onTap: () {
                     // TODO このキーワードで検索
+                    viewModel.deleteSearchHistories(
+                        _database, viewModel.histories[index].keyword.hashCode);
                   },
                 );
               });
