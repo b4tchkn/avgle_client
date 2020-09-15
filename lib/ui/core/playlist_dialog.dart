@@ -54,7 +54,9 @@ class PlaylistDialog extends StatelessWidget {
         },
       ));
     });
-    dialogContents.add(const Divider());
+    if (_playlists.isNotEmpty) {
+      dialogContents.add(const Divider());
+    }
     dialogContents.add(ListTile(
       leading: const Icon(Icons.add),
       title: const Text(Strings.corePlayListDialogNewPlayList),
