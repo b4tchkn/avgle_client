@@ -39,6 +39,11 @@ class SearchViewModel extends ChangeNotifier {
   bool _isSearched = false;
   bool get isSearched => _isSearched;
 
+  bool _isTextFieldEmply = true;
+  bool get isTextFieldEmpty => _isTextFieldEmply;
+
+  TextEditingController searchTextEditingController = TextEditingController();
+
   int _pageCount = -1;
 
   Future<void> addSearchHistory(
@@ -65,8 +70,12 @@ class SearchViewModel extends ChangeNotifier {
     await db.delete('history', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> searchVideos(String searchWord) {
+  Future<void> searchVideos(String searchWord) async {
+    _pageCount = -1;
     _pageCount++;
+    searchedVideos.clear();
+    searchTextEditingController.text = searchWord;
+    notifyListeners();
     return _videoRepository
         .fetchSearchedVideos(searchWord, _pageCount.toString())
         .then((value) {
@@ -119,8 +128,32 @@ class SearchViewModel extends ChangeNotifier {
     return addVideoInPlaylist(playlistName, video);
   }
 
+  void changeTextFieldState(bool isTextFieldEmpty) {
+    _isTextFieldEmply = isTextFieldEmpty;
+    if (isTextFieldEmpty) {
+      _isSearched = false;
+      notifyListeners();
+    }
+    notifyListeners();
+  }
+
+  void onTapTextFieldClear() {
+    changeTextFieldState(true);
+    searchTextEditingController.clear();
+    _isSearched = false;
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    searchTextEditingController.dispose();
+    super.dispose();
+  }
+
   void onWillPop() {
     _isSearched = false;
+    _isTextFieldEmply = true;
+    searchTextEditingController.clear();
     notifyListeners();
   }
 }

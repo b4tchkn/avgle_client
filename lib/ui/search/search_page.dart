@@ -38,17 +38,35 @@ class SearchPage extends HookWidget {
                 Radius.circular(4),
               ),
             ),
-            child: TextField(
-              textInputAction: TextInputAction.search,
-              onSubmitted: (String searchWord) {
-                viewModel.searchVideos(searchWord);
-                viewModel.addSearchHistory(_database, searchWord);
-              },
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                hintText: Strings.searchHint,
-                hintMaxLines: 1,
-              ),
+            child: Stack(
+              children: [
+                TextField(
+                  controller: viewModel.searchTextEditingController,
+                  onChanged: (String text) {
+                    viewModel.changeTextFieldState(text == '');
+                  },
+                  textInputAction: TextInputAction.search,
+                  onSubmitted: (String searchWord) {
+                    if (viewModel.searchTextEditingController.text != '') {
+                      viewModel.searchVideos(searchWord);
+                      viewModel.addSearchHistory(_database, searchWord);
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: Strings.searchHint,
+                    hintMaxLines: 1,
+                    // suffixIcon: !viewModel.isTextFieldEmpty
+                    //     ? IconButton(
+                    //         icon: const Icon(Icons.clear),
+                    //         onPressed: () {
+                    //           viewModel.onTapTextFieldClear();
+                    //         },
+                    //       )
+                    //     : Container(),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -62,7 +80,7 @@ class SearchPage extends HookWidget {
                         leading: const Icon(Icons.history),
                         title: Text(viewModel.histories[index].keyword),
                         onTap: () {
-                          // TODO このキーワードで検索
+                          FocusScope.of(context).unfocus();
                           viewModel
                               .searchVideos(viewModel.histories[index].keyword);
                         },
