@@ -5,7 +5,7 @@ class Converters {
       viewCount = '$viewnumber回';
     } else {
       // ignore: unnecessary_parenthesis
-      viewCount = '${(viewnumber / 10000)}万回';
+      viewCount = '${(viewnumber / 10000).toStringAsFixed(1)}万回';
     }
     return viewCount;
   }
@@ -26,7 +26,11 @@ class Converters {
         addedAt = '${diff.inHours}時間前';
       }
     } else {
-      addedAt = '${diff.inDays}日前';
+      if (diff.inDays > 365) {
+        addedAt = '${(diff.inDays / 365).floor()}年前';
+      } else {
+        addedAt = '${diff.inDays}日前';
+      }
     }
     return addedAt;
   }
