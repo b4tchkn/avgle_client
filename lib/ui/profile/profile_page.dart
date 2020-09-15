@@ -3,6 +3,7 @@ import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/debug/debug_page.dart';
 import 'package:avgleclient/ui/profile/profile_view_model.dart';
+import 'package:avgleclient/ui/profile/widgets/profile_top_signed_in.dart';
 import 'package:avgleclient/ui/profile/widgets/profile_top_signed_out.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,9 @@ class ProfilePage extends HookWidget {
           child: Column(
             children: [
               if (viewModel.user != null)
-                Text(viewModel.user.toString())
+                ProfileTopSignedIn(
+                  viewModel: viewModel,
+                )
               else
                 ProfileTopSignedOut(
                   viewModel: viewModel,
