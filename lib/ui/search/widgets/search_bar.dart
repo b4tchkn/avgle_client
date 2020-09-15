@@ -16,18 +16,12 @@ class SearchBar extends StatelessWidget {
   final Future<Database> _database;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      padding: const EdgeInsets.only(left: 8),
-      decoration: const BoxDecoration(
-        color: AppColors.darkGrey,
-        borderRadius: BorderRadius.all(
-          Radius.circular(4),
-        ),
-      ),
-      child: Stack(
-        children: [
-          TextField(
+    return Stack(
+      children: [
+        Container(
+          color: AppColors.darkGrey,
+          padding: const EdgeInsets.only(left: 8),
+          child: TextField(
             controller: _viewModel.searchTextEditingController,
             onChanged: (String text) {
               _viewModel.changeTextFieldState(text == '');
@@ -43,18 +37,20 @@ class SearchBar extends StatelessWidget {
               border: InputBorder.none,
               hintText: Strings.searchHint,
               hintMaxLines: 1,
-              // suffixIcon: !viewModel.isTextFieldEmpty
-              //     ? IconButton(
-              //         icon: const Icon(Icons.clear),
-              //         onPressed: () {
-              //           viewModel.onTapTextFieldClear();
-              //         },
-              //       )
-              //     : Container(),
             ),
           ),
-        ],
-      ),
+        ),
+        if (!_viewModel.isTextFieldEmpty)
+          Positioned(
+            right: 4,
+            child: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {
+                _viewModel.onTapTextFieldClear();
+              },
+            ),
+          ),
+      ],
     );
   }
 }
