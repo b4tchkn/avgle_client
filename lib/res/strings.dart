@@ -24,6 +24,7 @@ class Strings {
   static const profileSignInWithGoogle = 'Googleでサインイン';
   static const profileSignOut = 'サインアウト';
   static const debugPageTitle = 'デバッグ画面';
+  static const profilePleaseSignIn = 'サインインして\nAvgleをお楽しみください';
 
   // For Library
   static const libraryWatchRecently = '最近視聴したコンテンツ';

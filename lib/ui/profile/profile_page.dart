@@ -3,6 +3,7 @@ import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/debug/debug_page.dart';
 import 'package:avgleclient/ui/profile/profile_view_model.dart';
+import 'package:avgleclient/ui/profile/widgets/profile_top_signed_out.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -29,21 +30,9 @@ class ProfilePage extends HookWidget {
               if (viewModel.user != null)
                 Text(viewModel.user.toString())
               else
-                const Text('ログインしてね'),
-              FlatButton(
-                child: const Text(Strings.profileSignInWithGoogle),
-                color: AppColors.lightGrey,
-                onPressed: () {
-                  viewModel.signIn();
-                },
-              ),
-              FlatButton(
-                child: const Text(Strings.profileSignOut),
-                color: AppColors.lightGrey,
-                onPressed: () {
-                  viewModel.signOut();
-                },
-              ),
+                ProfileTopSignedOut(
+                  viewModel: viewModel,
+                ),
               const Divider(),
               FlatButton(
                 child: const Text(Strings.debugPageTitle),
