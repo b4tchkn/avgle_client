@@ -90,4 +90,6 @@ class Strings {
 
   // For EditPlaylist
   static const editPlaylistAppBarTitle = '再生リストの編集';
+  static const editPlaylistUpdate = '更新';
+  static const editPlaylistTitle = 'タイトル';
 }

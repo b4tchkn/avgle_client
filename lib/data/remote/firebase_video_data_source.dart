@@ -106,6 +106,18 @@ class FirebaseVideoDataSource {
     return playlists;
   }
 
+  Future<Video> fetchPlaylistTopOneVideo(String playlistName) async {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName)
+        .collection('video')
+        .limit(1);
+    final res = await userDataRef.get();
+    return Video.fromJson(res.docs.first.data());
+  }
+
   Future<void> addVideoInPlaylist(String playlistName, Video video) {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)
