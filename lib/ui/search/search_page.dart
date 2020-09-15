@@ -18,47 +18,60 @@ class SearchPage extends HookWidget {
     final getSearchHistories =
         useMemoized(() => viewModel.getSearchHistories(_database));
     useFuture(getSearchHistories);
-    return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          height: 40,
-          padding: const EdgeInsets.only(left: 8),
-          decoration: const BoxDecoration(
-            color: AppColors.darkGrey,
-            borderRadius: BorderRadius.all(
-              Radius.circular(4),
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context);
+        viewModel.onWillPop();
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Container(
+            height: 40,
+            padding: const EdgeInsets.only(left: 8),
+            decoration: const BoxDecoration(
+              color: AppColors.darkGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(4),
+              ),
             ),
-          ),
-          child: TextField(
-            textInputAction: TextInputAction.search,
-            onSubmitted: (String searchWord) {
-              // TODO 実際に検索する処理
-              viewModel.addSearchHistory(_database, searchWord);
-            },
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: Strings.searchHint,
-              hintMaxLines: 1,
+            child: TextField(
+              textInputAction: TextInputAction.search,
+              onSubmitted: (String searchWord) {
+                viewModel.searchVideos(searchWord);
+                viewModel.addSearchHistory(_database, searchWord);
+              },
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                hintText: Strings.searchHint,
+                hintMaxLines: 1,
+              ),
             ),
           ),
         ),
-      ),
-      body: Builder(
-        builder: (BuildContext buildContext) {
-          return ListView.builder(
-              itemCount: viewModel.histories.length,
-              itemBuilder: (BuildContext _, int index) {
-                return ListTile(
-                  leading: const Icon(Icons.history),
-                  title: Text(viewModel.histories[index].keyword),
-                  onTap: () {
-                    // TODO このキーワードで検索
-                    viewModel.deleteSearchHistories(
-                        _database, viewModel.histories[index].keyword.hashCode);
-                  },
-                );
-              });
-        },
+        body: Builder(
+          builder: (BuildContext buildContext) {
+            return !viewModel.isSearched
+                ? ListView.builder(
+                    itemCount: viewModel.histories.length,
+                    itemBuilder: (BuildContext _, int index) {
+                      return ListTile(
+                        leading: const Icon(Icons.history),
+                        title: Text(viewModel.histories[index].keyword),
+                        onTap: () {
+                          // TODO このキーワードで検索
+                          viewModel
+                              .searchVideos(viewModel.histories[index].keyword);
+                        },
+                      );
+                    })
+                : Container(
+                    child: const Center(
+                      child: Text('検索結果'),
+                    ),
+                  );
+          },
+        ),
       ),
     );
   }
