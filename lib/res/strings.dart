@@ -1,4 +1,6 @@
 class Strings {
+  static const appVersion = '1.0.0';
+
   static const bottomNavItemHomeTitle = 'ホーム';
   static const bottomNavItemExploreTitle = '探索';
   static const bottomNavItemLibraryTitle = 'ライブラリ';
@@ -25,6 +27,9 @@ class Strings {
   static const profileSignOut = 'サインアウト';
   static const debugPageTitle = 'デバッグ画面';
   static const profilePleaseSignIn = 'サインインして\nAvgleをお楽しみください';
+  static const profileDeveloper = 'デベロッパー';
+  static const profileLicense = 'ライセンス';
+  static const profileAppVersion = 'アプリバージョン';
 
   // For Library
   static const libraryWatchRecently = '最近視聴したコンテンツ';

@@ -34,6 +34,23 @@ class ProfilePage extends HookWidget {
                   viewModel: viewModel,
                 ),
               const Divider(),
+              ListTile(
+                title: const Text(Strings.profileLicense),
+                onTap: () {
+                  // TODO ライセンス画面へ遷移
+                },
+              ),
+              ListTile(
+                title: const Text(Strings.profileDeveloper),
+                onTap: () {
+                  // TODO 開発者紹介ページに遷移
+                },
+              ),
+              const ListTile(
+                title: Text(Strings.profileAppVersion),
+                trailing: Text(Strings.appVersion),
+              ),
+              const Divider(),
               FlatButton(
                 child: const Text(Strings.debugPageTitle),
                 color: AppColors.lightGrey,
