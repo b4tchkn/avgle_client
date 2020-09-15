@@ -40,9 +40,25 @@ class SearchedVideoListTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image(
-              image: NetworkImage(_video.previewUrl),
-              height: 90,
+            Stack(
+              children: [
+                Image(
+                  image: NetworkImage(_video.previewUrl),
+                  height: 90,
+                ),
+                Positioned(
+                  bottom: 4,
+                  right: 4,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    color: AppColors.darkGrey,
+                    child: Text(
+                      Converters.toVideoDurationFormatted(_video.duration),
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                )
+              ],
             ),
             Container(
               width: 16,

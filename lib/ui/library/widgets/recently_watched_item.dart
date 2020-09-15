@@ -3,6 +3,7 @@ import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
 import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/ui/library/library_view_model.dart';
+import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,10 +42,26 @@ class RecentlyWatchedItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Ink.image(
-                image: NetworkImage(_video.previewUrl),
-                fit: BoxFit.cover,
-                height: 80,
+              Stack(
+                children: [
+                  Ink.image(
+                    image: NetworkImage(_video.previewUrl),
+                    fit: BoxFit.cover,
+                    height: 80,
+                  ),
+                  Positioned(
+                    bottom: 4,
+                    right: 4,
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      color: AppColors.darkGrey,
+                      child: Text(
+                        Converters.toVideoDurationFormatted(_video.duration),
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
