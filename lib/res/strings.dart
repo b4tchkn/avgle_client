@@ -81,4 +81,7 @@ class Strings {
   static const playlistSaveWatchLaterSuccess = '[後で見る]に保存しました';
   static const playlistSaveWatchLaterFailure = '保存できませんでした';
   static String playlistVideoCount(int videoCount) => '${videoCount}本の動画';
+
+  // For Search
+  static const searchHint = 'Avgleを検索';
 }
