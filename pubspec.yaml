@@ -46,6 +46,10 @@ dependencies:
   firebase_auth: ^0.18.0+1
   google_sign_in: ^4.5.3
 
+  # For Local DB
+  sqflite: ^1.3.0
+  path: ^1.7.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

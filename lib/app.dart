@@ -1,12 +1,10 @@
 import 'package:avgleclient/app_notifier.dart';
-import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/core/user_icon_button.dart';
 import 'package:avgleclient/ui/explore/explore_page.dart';
 import 'package:avgleclient/ui/home/home_page.dart';
 import 'package:avgleclient/ui/library/library_page.dart';
-import 'package:avgleclient/ui/profile/profile_page.dart';
 import 'package:avgleclient/ui/search/search_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
