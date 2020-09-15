@@ -22,19 +22,21 @@ class PlaylistPage extends HookWidget {
         () => viewModel.fetchPlaylistVideos(_playlistName),
         [error.peekContent()?.type]);
     useFuture(fetchPlaylistVideos);
-    final items = <Widget>[
-      PlaylistTopItem(
-        playlistName: _playlistName,
-        userName: _userName,
-        videoCount: viewModel.videos.length,
-      )
-    ];
     return Scaffold(
       appBar: AppBar(
         title: Text(_playlistName),
       ),
       body: Builder(
         builder: (BuildContext buildContext) {
+          final items = <Widget>[
+            PlaylistTopItem(
+              viewModel: viewModel,
+              playlistName: _playlistName,
+              userName: _userName,
+              videoCount: viewModel.videos.length,
+              buildContext: buildContext,
+            )
+          ];
           // ignore: avoid_function_literals_in_foreach_calls
           viewModel.videos.forEach((video) {
             items.add(PlaylistVideoListTile(

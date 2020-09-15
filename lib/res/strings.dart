@@ -81,6 +81,11 @@ class Strings {
   static const playlistSaveWatchLaterSuccess = '[後で見る]に保存しました';
   static const playlistSaveWatchLaterFailure = '保存できませんでした';
   static String playlistVideoCount(int videoCount) => '${videoCount}本の動画';
+  static const playlistDeletePlaylistDialogTitle = '再生リストを削除しますか？';
+  static const playlistDeletePlaylistDialogDelete = '削除';
+  static const playlistDeletePlaylistDialogCancel = 'キャンセル';
+  static const playlistDeletePlaylistSuccess = 'プレイリストを削除しました';
+  static const playlistDeletePlaylistFailure = 'プレイリストの削除に失敗しました';
 
   // For Search
   static const searchHint = 'Avgleを検索';

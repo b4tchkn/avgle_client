@@ -159,6 +159,15 @@ class FirebaseVideoDataSource {
     return userDataRef.delete();
   }
 
+  Future<void> deletePlaylist(String playlistName) {
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(playlistName);
+    return userDataRef.delete();
+  }
+
   Future<void> deleteVideoInPlaylist(String vid, String playlistName) {
     final userDataRef = _store
         .collection(_auth.currentUser.uid)

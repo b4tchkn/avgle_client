@@ -1,21 +1,28 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
-import 'package:avgleclient/ui/edit_playlist/edit_playlist_page.dart';
+import 'package:avgleclient/ui/playlist/playlist_view_model.dart';
+import 'package:avgleclient/ui/playlist/widgets/delete_playlist_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlaylistTopItem extends StatelessWidget {
   const PlaylistTopItem(
-      {@required String playlistName,
+      {@required PlaylistViewModel viewModel,
+      @required String playlistName,
       @required String userName,
-      @required int videoCount})
-      : _playlistName = playlistName,
+      @required int videoCount,
+      @required BuildContext buildContext})
+      : _viewModel = viewModel,
+        _playlistName = playlistName,
         _userName = userName,
-        _videoCount = videoCount;
+        _videoCount = videoCount,
+        _buildContext = buildContext;
 
+  final PlaylistViewModel _viewModel;
   final String _playlistName;
   final String _userName;
   final int _videoCount;
+  final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +48,23 @@ class PlaylistTopItem extends StatelessWidget {
                 child: Text(
                   _userName,
                   style: const TextStyle(fontSize: 14),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 16, top: 16),
+                child: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext dialogContext) {
+                          return DeletePlaylistDialog(
+                              viewModel: _viewModel,
+                              playlistName: _playlistName,
+                              dialogContext: dialogContext,
+                              buildContext: _buildContext);
+                        });
+                  },
                 ),
               ),
               // Container(
