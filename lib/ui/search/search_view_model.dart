@@ -42,6 +42,9 @@ class SearchViewModel extends ChangeNotifier {
   bool _isTextFieldEmply = true;
   bool get isTextFieldEmpty => _isTextFieldEmply;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   TextEditingController searchTextEditingController = TextEditingController();
 
   int _pageCount = -1;
@@ -71,6 +74,8 @@ class SearchViewModel extends ChangeNotifier {
   }
 
   Future<void> searchVideos(String searchWord) async {
+    _isLoading = true;
+    _isSearched = true;
     _pageCount = -1;
     _pageCount++;
     searchedVideos.clear();
@@ -79,9 +84,9 @@ class SearchViewModel extends ChangeNotifier {
     return _videoRepository
         .fetchSearchedVideos(searchWord, _pageCount.toString())
         .then((value) {
+      _isLoading = false;
       _isVideoHasMore = value.response.hasMore;
       _searchedVideos.addAll(value.response.videos);
-      _isSearched = true;
       notifyListeners();
     }).catchError((dynamic error) {
       debugPrint('searchVideos $error');

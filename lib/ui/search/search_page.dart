@@ -86,16 +86,18 @@ class SearchPage extends HookWidget {
                         },
                       );
                     })
-                : ListView.builder(
-                    itemCount: viewModel.searchedVideos.length,
-                    itemBuilder: (BuildContext _, int index) {
-                      return SearchedVideoListTile(
-                        viewModel: viewModel,
-                        video: viewModel.searchedVideos[index],
-                        playlists: viewModel.playlists,
-                        buildContext: buildContext,
-                      );
-                    });
+                : !viewModel.isLoading
+                    ? ListView.builder(
+                        itemCount: viewModel.searchedVideos.length,
+                        itemBuilder: (BuildContext _, int index) {
+                          return SearchedVideoListTile(
+                            viewModel: viewModel,
+                            video: viewModel.searchedVideos[index],
+                            playlists: viewModel.playlists,
+                            buildContext: buildContext,
+                          );
+                        })
+                    : const Center(child: CircularProgressIndicator());
           },
         ),
       ),
