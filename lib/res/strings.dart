@@ -87,4 +87,7 @@ class Strings {
   static String searchVideoViewCount(String viewnumber) => '${viewnumber} 視聴';
   static String searchVideoNoResults(String searchKeyword) =>
       '「$searchKeyword」に該当する結果はありません。\n他の検索ワードでお試しください。';
+
+  // For EditPlaylist
+  static const editPlaylistAppBarTitle = '再生リストの編集';
 }

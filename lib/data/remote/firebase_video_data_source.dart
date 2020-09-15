@@ -101,7 +101,7 @@ class FirebaseVideoDataSource {
     final playlists = <String>[];
     // ignore: avoid_function_literals_in_foreach_calls
     res.docs.forEach((playlist) {
-      playlists.add(playlist.id);
+      playlists.add(playlist.data().values.first.toString());
     });
     return playlists;
   }
@@ -124,9 +124,8 @@ class FirebaseVideoDataSource {
         .collection('playlist')
         .doc(playlistName);
 
-    // なにかしらFieldに入れないとプレイリストのdocumentを配列で取れないので
-    // プレイリスト作成時に挿入する用
-    final initialField = {'key': 'value'};
+    // 実際にプレイリスト名を参照するFieldを挿入
+    final initialField = {'playlist_name': playlistName};
     return userDataRef.set(initialField);
   }
 
@@ -157,5 +156,16 @@ class FirebaseVideoDataSource {
         .collection('video')
         .doc(vid);
     return userDataRef.delete();
+  }
+
+  Future<void> updatePlaylistName(
+      String oldPlaylistName, String newPlaylistName) {
+    final setPlaylistName = {'playlist_name': newPlaylistName};
+    final userDataRef = _store
+        .collection(_auth.currentUser.uid)
+        .doc('data')
+        .collection('playlist')
+        .doc(oldPlaylistName);
+    return userDataRef.update(setPlaylistName);
   }
 }

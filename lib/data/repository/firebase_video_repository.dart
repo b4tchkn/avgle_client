@@ -13,4 +13,6 @@ abstract class FirebaseVideoRepository {
   Future<void> deleteVideoInHistory(String vid);
   Future<void> deleteVideoInWatchLater(String vid);
   Future<void> deleteVideoInPlaylist(String vid, String playlistName);
+  Future<void> updatePlaylistName(
+      String oldPlaylistName, String newPlaylistName);
 }

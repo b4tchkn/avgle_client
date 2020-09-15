@@ -1,5 +1,6 @@
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
+import 'package:avgleclient/ui/edit_playlist/edit_playlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +48,12 @@ class PlaylistTopItem extends StatelessWidget {
                 child: IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
-                    // TODO 編集画面へ遷移
-                    debugPrint('編集ボタンタップされた');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => EditPlaylistPage(
+                                  playlistName: _playlistName,
+                                )));
                   },
                 ),
               ),
