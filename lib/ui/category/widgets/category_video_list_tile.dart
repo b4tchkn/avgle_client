@@ -1,4 +1,5 @@
 import 'package:avgleclient/data/model/video_res.dart';
+import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/category/category_view_model.dart';
@@ -7,8 +8,10 @@ import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CategoryVideoListTile extends StatelessWidget {
+class CategoryVideoListTile extends HookWidget {
   const CategoryVideoListTile(
       {@required CategoryViewModel viewModel,
       @required Video video,
@@ -25,6 +28,7 @@ class CategoryVideoListTile extends StatelessWidget {
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
+    final user = useProvider(firebaseAuthProvider);
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -88,17 +92,18 @@ class CategoryVideoListTile extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              child: IconButton(
-                icon: const Icon(
-                  Icons.more_vert,
-                  size: 20,
+            if (user.currentUser != null)
+              Container(
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.more_vert,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    _showModalBottomSheet();
+                  },
                 ),
-                onPressed: () {
-                  _showModalBottomSheet();
-                },
-              ),
-            )
+              )
           ],
         ),
       ),

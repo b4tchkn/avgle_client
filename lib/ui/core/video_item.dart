@@ -1,13 +1,16 @@
 import 'package:avgleclient/data/model/video_res.dart';
+import 'package:avgleclient/data/provider/firebase_auth_provider.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/ui/core/video_more_modal_bottom_sheet.dart';
 import 'package:avgleclient/ui/core/video_web_view.dart';
 import 'package:avgleclient/util/converters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-class VideoItem extends StatelessWidget {
+class VideoItem extends HookWidget {
   const VideoItem(
       {@required dynamic viewModel,
       @required Video video,
@@ -27,6 +30,7 @@ class VideoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final _viewCount = Converters.toViewCountFormatted(_video.viewnumber);
     final _addedAt = Converters.toAddedAtFormatted(_video.addtime);
+    final user = useProvider(firebaseAuthProvider);
 
     return InkWell(
       onTap: () => {
@@ -120,20 +124,21 @@ class VideoItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    child: IconButton(
-                      padding: const EdgeInsets.all(4),
-                      icon: const Icon(
-                        Icons.more_vert,
-                        size: 20,
+                  if (user.currentUser != null)
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: IconButton(
+                        padding: const EdgeInsets.all(4),
+                        icon: const Icon(
+                          Icons.more_vert,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          _showModalBottomSheet(_buildContext);
+                        },
                       ),
-                      onPressed: () {
-                        _showModalBottomSheet(_buildContext);
-                      },
                     ),
-                  ),
                 ],
               ),
             )
