@@ -19,6 +19,7 @@ class WatchLaterTopItem extends HookWidget {
       children: [
         Container(
           height: 160,
+          width: MediaQuery.of(context).size.width,
           color: AppColors.darkGrey,
           child: Stack(
             children: [
@@ -36,7 +37,7 @@ class WatchLaterTopItem extends HookWidget {
                 alignment: Alignment.bottomRight,
                 child: Container(
                     height: 120,
-                    child: Lottie.asset('assets/lotties/watch_later.json')),
+                    child: Image.asset('assets/images/icon_kachinko.png')),
               ),
             ],
           ),
