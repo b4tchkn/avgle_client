@@ -2,6 +2,7 @@ import 'package:avgleclient/error_notifier.dart';
 import 'package:avgleclient/res/app_colors.dart';
 import 'package:avgleclient/res/strings.dart';
 import 'package:avgleclient/ui/debug/debug_page.dart';
+import 'package:avgleclient/ui/developer/developer_page.dart';
 import 'package:avgleclient/ui/profile/profile_view_model.dart';
 import 'package:avgleclient/ui/profile/widgets/profile_top_signed_in.dart';
 import 'package:avgleclient/ui/profile/widgets/profile_top_signed_out.dart';
@@ -50,7 +51,9 @@ class ProfilePage extends HookWidget {
               ListTile(
                 title: const Text(Strings.profileDeveloper),
                 onTap: () {
-                  // TODO 開発者紹介ページに遷移
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(builder: (_) => DeveloperPage()),
+                  );
                 },
               ),
               const ListTile(
