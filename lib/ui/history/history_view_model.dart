@@ -42,6 +42,7 @@ class HistoryViewModel extends ChangeNotifier {
   Future<void> refresh() {
     searchTextEditingController.text = '';
     _videos.clear();
+    videos.clear();
     notifyListeners();
     return fetchHistoryVideos();
   }

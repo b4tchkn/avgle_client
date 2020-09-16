@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 class HistoryPage extends HookWidget {
   @override
@@ -30,15 +31,34 @@ class HistoryPage extends HookWidget {
       ),
       body: Builder(
         builder: (BuildContext buildContext) {
-          // ignore: avoid_function_literals_in_foreach_calls
-          viewModel.videos.forEach((video) {
-            items.add(HistoryVideoListTile(
-              viewModel: viewModel,
-              video: video,
-              playlists: viewModel.playlists,
-              buildContext: buildContext,
+          if (viewModel.videos.isNotEmpty) {
+            // ignore: avoid_function_literals_in_foreach_calls
+            viewModel.videos.forEach((video) {
+              items.add(HistoryVideoListTile(
+                viewModel: viewModel,
+                video: video,
+                playlists: viewModel.playlists,
+                buildContext: buildContext,
+              ));
+            });
+          } else {
+            items.add(Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      height: 200,
+                      child: Image.asset('assets/images/icon_history.png')),
+                  const Text(
+                    Strings.historyNo,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ));
-          });
+          }
           return !viewModel.isLoading
               ? RefreshIndicator(
                   onRefresh: () => viewModel.refresh(),

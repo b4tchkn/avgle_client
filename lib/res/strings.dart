@@ -63,6 +63,7 @@ class Strings {
   static const historySearchHint = '再生履歴を検索します';
   static const historyDeleteVideoInHistorySuccess = '削除しました';
   static const historyLaterDeleteVideoInHistoryFailure = '削除に失敗しました';
+  static const historyNo = '現在再生履歴は0件です。';
 
   // For Explore
   static String exploreCategoryVideoCount(int videoCount) => '${videoCount}本';
