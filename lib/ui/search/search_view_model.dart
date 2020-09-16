@@ -78,8 +78,7 @@ class SearchViewModel extends ChangeNotifier {
   Future<void> searchVideos(String searchWord) async {
     _isLoading = true;
     _isSearched = true;
-    _pageCount = -1;
-    _pageCount++;
+    _pageCount = 0;
     searchedVideos.clear();
     searchTextEditingController.text = searchWord;
     notifyListeners();

@@ -15,8 +15,18 @@ class SearchResultList extends StatelessWidget {
   final BuildContext _buildContext;
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+              scrollController.position.pixels &&
+          _viewModel.isVideoHasMore) {
+        _viewModel
+            .fetchSearchedVideos(_viewModel.searchTextEditingController.text);
+      }
+    });
     return _viewModel.searchedVideos.isNotEmpty
         ? ListView.builder(
+            controller: scrollController,
             itemCount: _viewModel.searchedVideos.length,
             itemBuilder: (BuildContext _, int index) {
               return SearchedVideoListTile(
