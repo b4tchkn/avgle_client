@@ -60,16 +60,16 @@ class ProfilePage extends HookWidget {
                 title: Text(Strings.profileAppVersion),
                 trailing: Text(Strings.appVersion),
               ),
-              const Divider(),
-              FlatButton(
-                child: const Text(Strings.debugPageTitle),
-                color: AppColors.lightGrey,
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute<void>(builder: (_) => DebugPage()),
-                  );
-                },
-              ),
+              // const Divider(),
+              // FlatButton(
+              //   child: const Text(Strings.debugPageTitle),
+              //   color: AppColors.lightGrey,
+              //   onPressed: () {
+              //     Navigator.of(context).push(
+              //       MaterialPageRoute<void>(builder: (_) => DebugPage()),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),
