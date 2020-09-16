@@ -30,15 +30,37 @@ class WatchLaterPage extends HookWidget {
       ),
       body: Builder(
         builder: (BuildContext buildContext) {
-          // ignore: avoid_function_literals_in_foreach_calls
-          viewModel.videos.forEach((video) {
-            items.add(WatchLaterVideoListTile(
-              viewModel: viewModel,
-              video: video,
-              playlists: viewModel.playlists,
-              buildContext: buildContext,
+          if (viewModel.videos.isNotEmpty) {
+            // ignore: avoid_function_literals_in_foreach_calls
+            viewModel.videos.forEach((video) {
+              items.add(WatchLaterVideoListTile(
+                viewModel: viewModel,
+                video: video,
+                playlists: viewModel.playlists,
+                buildContext: buildContext,
+              ));
+            });
+          } else {
+            items.add(Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 200,
+                    child: Image.asset(
+                      'assets/images/icon_movie.png',
+                    ),
+                  ),
+                  const Text(
+                    Strings.watchLaterNo,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ));
-          });
+          }
           return RefreshIndicator(
             onRefresh: () => viewModel.fetchWatchLaterVideos(),
             child: ListView.builder(

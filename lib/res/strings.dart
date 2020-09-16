@@ -51,6 +51,7 @@ class Strings {
   static const watchLaterDeleteVideoInWatchLaterFailure = '削除に失敗しました';
   static String watchLaterTopItemVideoCount(int videoCount) =>
       '$videoCount本の動画';
+  static const watchLaterNo = '現在後で見る動画は0件です。';
 
   // For History
   static const historyAppBarTitle = '履歴';
