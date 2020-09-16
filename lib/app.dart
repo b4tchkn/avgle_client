@@ -36,9 +36,9 @@ class App extends HookWidget {
     return MaterialApp(
       title: 'Avgle',
       theme: ThemeData(
-        primaryColor: AppColors.grey,
+        brightness: Brightness.dark,
+        accentColor: AppColors.accentBlue,
       ),
-      darkTheme: ThemeData.dark(),
       home: Builder(
         builder: (BuildContext context) {
           return Scaffold(
