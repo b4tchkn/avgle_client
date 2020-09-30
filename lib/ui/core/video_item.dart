@@ -69,8 +69,8 @@ class VideoItem extends HookWidget {
                     top: 8,
                     right: 8,
                     child: SizedBox(
-                      height: 80,
-                      width: 80,
+                      height: 60,
+                      width: 60,
                       child: Lottie.asset('assets/lotties/video_hd_icon.json'),
                     ),
                   ),
