@@ -27,8 +27,7 @@ class ProfileViewModel extends ChangeNotifier {
   }
 
   Future<void> signOut() async {
-    // ignore: unnecessary_parenthesis
-    _user = await (_repository.signOut()) as User;
+    _user = await _repository.signOut();
     notifyListeners();
   }
 }
