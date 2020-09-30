@@ -29,38 +29,24 @@ class UserDataSource {
   }
 
   Future<User> signOut() async {
-    var result = _auth.currentUser;
-    var googleSignOutResult = _googleSignIn.currentUser;
-    var authSignOutResult = _auth.currentUser;
+    var authCurrentUser = _auth.currentUser;
+    var googleCurrentUser = _googleSignIn.currentUser;
 
-    try {
-      if (_googleSignIn.currentUser != null && _auth.currentUser != null) {
-        await _auth
-            .signOut()
-            .then((_) => {
-                  debugPrint('signOut success'),
-                  authSignOutResult = null,
-                })
-            .catchError((_) => {
-                  debugPrint('auth signOut error'),
-                });
-        await _googleSignIn
-            .signOut()
-            .then((_) => {
-                  googleSignOutResult = null,
-                })
-            .catchError((_) => {
-                  debugPrint('google signOut error'),
-                });
-      }
-      if (googleSignOutResult == null && authSignOutResult == null) {
-        result = null;
-      }
-      debugPrint('signOut signedOut in $result');
-      return result;
-    } catch (e) {
-      debugPrint(e.toString());
-      return result;
+    if (authCurrentUser != null) {
+      await _auth.signOut().then((value) {
+        authCurrentUser = value as User;
+      }).catchError((_) {
+        debugPrint('auth signOut error');
+      });
     }
+
+    if (googleCurrentUser != null) {
+      await _googleSignIn.signOut().then((value) {
+        googleCurrentUser = value;
+      }).catchError((_) {
+        debugPrint('google sighOut error');
+      });
+    }
+    return authCurrentUser;
   }
 }
