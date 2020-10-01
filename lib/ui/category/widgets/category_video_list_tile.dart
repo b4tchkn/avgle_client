@@ -36,6 +36,7 @@ class CategoryVideoListTile extends HookWidget {
             MaterialPageRoute(
                 builder: (_) => VideoWebView(
                       videoUrl: _video.videoUrl,
+                      videoTitle: _video.title,
                     )));
         _viewModel.addVideoInHistory(_video);
       },

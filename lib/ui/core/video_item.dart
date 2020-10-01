@@ -39,6 +39,7 @@ class VideoItem extends HookWidget {
             MaterialPageRoute(
                 builder: (context) => VideoWebView(
                       videoUrl: _video.videoUrl,
+                      videoTitle: _video.title,
                     ))),
         _viewModel.addVideoInHistory(_video)
       },
