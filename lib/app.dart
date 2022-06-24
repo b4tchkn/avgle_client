@@ -19,13 +19,13 @@ class App extends HookWidget {
   ];
   final bottomNavItems = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.home), title: Text(Strings.bottomNavItemHomeTitle)),
+        icon: Icon(Icons.home), label: Strings.bottomNavItemHomeTitle),
     const BottomNavigationBarItem(
         icon: Icon(Icons.explore),
-        title: Text(Strings.bottomNavItemExploreTitle)),
+        label: Strings.bottomNavItemExploreTitle),
     const BottomNavigationBarItem(
         icon: Icon(Icons.video_library),
-        title: Text(Strings.bottomNavItemLibraryTitle)),
+        label: Strings.bottomNavItemLibraryTitle),
   ];
 
   @override
